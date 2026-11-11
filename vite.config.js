@@ -55,7 +55,7 @@ export default defineConfig({
         main: resolve(import.meta.dirname, 'index.html'),
         quiz: resolve(import.meta.dirname, 'quiz.html'),
         game: resolve(import.meta.dirname, 'game.html'),
-        hall: resolve(import.meta.dirname, 'hall.html'),
+        kedai: resolve(import.meta.dirname, 'kedai.html'),
       },
     },
   },

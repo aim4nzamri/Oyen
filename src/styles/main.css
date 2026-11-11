@@ -1275,3 +1275,389 @@ main {
     transform: translate(var(--x), 110vh) rotate(var(--r));
   }
 }
+
+/* ===== Footer extras ===== */
+.site-footer p {
+  margin: 6px 0 0;
+}
+
+.footer-belanja {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-weight: 800;
+  color: var(--brown);
+  background: #ffd23f;
+  border: var(--border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  box-shadow: 3px 3px 0 var(--brown);
+  text-decoration: none;
+}
+
+.footer-social a {
+  font-weight: 700;
+}
+
+/* ===== Kedai Oyen ===== */
+.kedai {
+  max-width: 900px;
+}
+
+.kedai section + section {
+  margin-top: 26px;
+}
+
+.kedai h2 {
+  font-size: 1.6rem;
+}
+
+.kedai-hero {
+  display: grid;
+  gap: 8px;
+  text-align: center;
+  align-items: center;
+}
+
+.kedai-hero-pic svg {
+  width: min(190px, 50vw);
+  height: auto;
+}
+
+.kedai-hero h1 {
+  font-size: clamp(2rem, 8vw, 3rem);
+  text-shadow: 3px 3px 0 var(--orange-soft);
+}
+
+.kedai-hero p {
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+
+.jump {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.jump a {
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.95rem;
+  background: var(--white);
+  border: var(--border);
+  border-radius: 999px;
+  padding: 4px 12px;
+  box-shadow: 2px 2px 0 var(--brown);
+}
+
+@media (min-width: 720px) {
+  .kedai-hero {
+    grid-template-columns: auto 1fr;
+    text-align: left;
+  }
+  .jump {
+    justify-content: flex-start;
+  }
+}
+
+/* Belanja */
+.belanja {
+  background: #fff7e6;
+  scroll-margin-top: 80px;
+}
+
+.belanja-head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.belanja-head p {
+  margin: 0;
+}
+
+.belanja-pic {
+  flex: none;
+  width: 90px;
+}
+
+.belanja-pic svg {
+  width: 100%;
+  height: auto;
+}
+
+.tiers {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.tiers li {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 0;
+  background: var(--white);
+  border: var(--border);
+  border-radius: 14px;
+  padding: 10px 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.tiers b {
+  font-size: 1.3rem;
+  color: var(--orange-dark);
+}
+
+.tier-emoji {
+  font-size: 1.6rem;
+}
+
+@media (min-width: 720px) {
+  .tiers {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.qr-wrap {
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+}
+
+.qr-box {
+  width: 236px;
+  height: 236px;
+  padding: 8px;
+  background: #fff;
+  border: var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+  display: grid;
+  place-items: center;
+}
+
+.qr-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.qr-missing {
+  text-align: center;
+  font-weight: 800;
+  color: var(--brown-soft);
+  border: 3px dashed var(--orange-soft);
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.qr-missing[hidden] {
+  display: none;
+}
+
+.qr-steps h3 {
+  font-size: 1.15rem;
+}
+
+.qr-steps ol {
+  margin: 0 0 12px;
+  padding-left: 1.3em;
+}
+
+.qr-name {
+  margin: 0 0 10px;
+}
+
+@media (min-width: 720px) {
+  .qr-wrap {
+    grid-template-columns: auto 1fr;
+    justify-items: start;
+    align-items: center;
+  }
+}
+
+.belanja-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.fineprint {
+  font-size: 0.85rem;
+  color: var(--brown-soft);
+  margin: 14px 0 0;
+}
+
+/* Barang Wajib */
+.barang {
+  scroll-margin-top: 80px;
+}
+
+.barang > p {
+  margin-top: 0;
+}
+
+.filters {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 2px 4px 10px 2px;
+  margin-bottom: 6px;
+  scrollbar-width: none;
+}
+
+.filters button {
+  flex: none;
+  appearance: none;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--brown);
+  background: var(--white);
+  border: var(--border);
+  border-radius: 999px;
+  padding: 5px 12px;
+  box-shadow: 2px 2px 0 var(--brown);
+  cursor: pointer;
+}
+
+.filters button[aria-pressed='true'] {
+  background: var(--orange);
+}
+
+.products {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.product {
+  display: flex;
+  gap: 12px;
+  background: var(--white);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 12px;
+}
+
+.product-pic {
+  flex: none;
+  width: 76px;
+  height: 76px;
+  display: grid;
+  place-items: center;
+  font-size: 2.6rem;
+  background: var(--cream);
+  border: var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.product-pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+
+.product-info h3 {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.chip {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: #ffe1bd;
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+
+.review {
+  margin: 0;
+  font-size: 0.9rem;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.review span {
+  font-style: normal;
+  font-weight: 700;
+}
+
+.rating {
+  margin: 0 0 4px;
+  font-size: 0.85rem;
+}
+
+.product .btn {
+  font-size: 0.9rem;
+  padding: 8px 12px;
+  margin-top: auto;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 2px 2px 0 var(--brown);
+}
+
+/* Merch teaser */
+.merch {
+  position: relative;
+  text-align: center;
+  scroll-margin-top: 80px;
+}
+
+.soon-badge {
+  position: absolute;
+  top: 14px;
+  right: -8px;
+  transform: rotate(8deg);
+  background: var(--pink);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.8rem;
+  padding: 3px 12px;
+  border: var(--border);
+  border-radius: 8px;
+}
+
+.merch-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.merch-row svg {
+  width: min(180px, 36vw);
+  height: auto;
+}
+
+.merch-row .sticker {
+  transform: rotate(-6deg);
+}

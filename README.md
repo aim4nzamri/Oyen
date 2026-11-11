@@ -11,11 +11,15 @@ The site is in Bahasa Melayu / Manglish. It's a static site built with **Vite + 
 | Laman Utama (Home) | `index.html` | ✅ |
 | Kuiz: "Oyen Kau Jenis Apa?" | `quiz.html` | ✅ |
 | Game: "Selamatkan Ikan Goreng" | `game.html` | ✅ |
-| Hall of Fame Oyen | `hall.html` | ✅ |
+| Kedai Oyen (shop + Belanja Oyen) | `kedai.html` | ✅ |
+| Hall of Fame Oyen | `reserved/hall-of-fame/` | ⏸️ Parked, not published |
 
 **Game:** canvas game. Drag a finger (phone) or use ← → / A D (desktop) to move Oyen. Catch ikan goreng (+1) and golden fish (+5), and dodge mak's flying selipar. You have 3 lives, it gets harder over time, P/Esc pauses, and the high score is saved in `localStorage`.
 
-**Hall of Fame:** a gallery of legendary orange cats loaded from `public/data/oyens.json`, with an "Oyen Minggu Ini" (Oyen of the Week) highlight, a Like 🧡 button saved in `localStorage`, and Popular/Terbaru sorting.
+**Kedai Oyen:**
+- *Barang Wajib Oyen*: affiliate product picks with Oyen's reviews and category filters.
+- *Belanja Oyen*: donations through a DuitNow QR and optional Ko-fi/e-wallet links.
+- A merch teaser.
 
 **Polish:**
 - 🔊/🔇 sound toggle in the header. All sounds are synthesized with the Web Audio API, so there are no audio files.
@@ -31,13 +35,12 @@ The quiz has 8 questions and 6 result types. Each result shows a stat card, a "S
 ├── index.html            # Home
 ├── quiz.html             # Quiz page
 ├── game.html             # Game page
-├── hall.html             # Hall of Fame
+├── kedai.html            # Kedai Oyen (affiliate shop + donations)
 ├── public/               # Static files copied as-is
 │   ├── og-image.png      # 1200x630 social preview image
 │   ├── favicon.svg, favicon-32.png, apple-touch-icon.png, icon-512.png
 │   ├── site.webmanifest
-│   ├── data/oyens.json   # Hall of Fame data
-│   └── oyens/            # Real cat photos go here
+│   └── belanja/duitnow-qr.png  # Your DuitNow QR (add this)
 ├── src/
 │   ├── js/
 │   │   ├── mascot.js     # Original Oyen mascot as inline SVG, with moods
@@ -49,8 +52,11 @@ The quiz has 8 questions and 6 result types. Each result shows a stat card, a "S
 │   │   ├── game.js       # "Selamatkan Ikan Goreng" game loop, input, overlays
 │   │   ├── sprites.js    # SVG sprites (fish, selipar) + SVG-to-image loader
 │   │   ├── sound.js      # Synthesized sound effects + on/off state
-│   │   └── hall.js       # Hall of Fame gallery, likes, sorting
+│   │   ├── kedai.js      # Kedai Oyen page
+│   │   ├── kedaiData.js  # ← EDIT: affiliate links, products, DuitNow/donation settings
+│   │   └── siteConfig.js # ← EDIT: TikTok / IG / YouTube links (shown in footer)
 │   └── styles/main.css   # All styles (design tokens at the top)
+├── reserved/hall-of-fame/  # Parked Hall of Fame feature (see its README)
 ├── scripts/generate-assets.mjs  # Regenerates icons + OG image from the mascot
 ├── vite.config.js        # Multi-page build config + SEO/OG tag injection
 └── .github/workflows/deploy.yml  # GitHub Pages deployment
@@ -92,32 +98,17 @@ The workflow passes the real Pages URL to the build as `SITE_URL`. A small plugi
 - **Game tuning:** constants and `difficulty()` / `spawn()` at the top of `src/js/game.js`. Game-over messages are in `GAME_OVER_LINES`.
 - **Mascot moods:** `src/js/mascot.js` (`smug`, `samseng`, `manja`, `pencuri`, `tidur`, `drama`, `otak`).
 
-## Hall of Fame data
+## Kedai Oyen: affiliate links and donations
 
-Everything is in `public/data/oyens.json`:
+Everything is in **`src/js/kedaiData.js`**:
 
-```json
-{
-  "oyenOfTheWeek": { "id": "kapten-oyen", "reason": "Why this cat won this week" },
-  "oyens": [
-    {
-      "id": "kapten-oyen",          // unique, URL-safe
-      "name": "Kapten Oyen",
-      "location": "Pulau Pinang",
-      "caption": "Funny one-liner",
-      "mood": "samseng",            // illustration if there is no photo
-      "palette": "pekat",           // oren | cair | pekat | krim | karat
-      "photo": null,                // e.g. "oyens/kapten-oyen.jpg" or an https:// URL
-      "likes": 412,                 // starting like count
-      "addedOn": "2026-11-09"       // used by the "Terbaru" sort
-    }
-  ]
-}
-```
+- **Products:** paste your Shopee Affiliate link into each product's `url`. Leave it empty (`''`) and the button shows "Link akan datang". Add, remove or reorder products freely. To use a product photo, put it in `public/kedai/` and set `image: 'kedai/<file>.jpg'`.
+- **DuitNow QR:** save your QR image as `public/belanja/duitnow-qr.png`. Until it exists, a "QR DuitNow akan datang" placeholder is shown. Set `qrName` to the account name people will see when they scan, so they know it's legit.
+- **Other donation links:** fill in `links` (Ko-fi, TNG, etc.) with `https://` URLs. Empty ones are hidden.
 
-To add a real cat, drop a photo into `public/oyens/`, add an entry with `"photo": "oyens/<file>.jpg"`, and push. To change the weekly winner, update `oyenOfTheWeek.id`.
+Product links use `rel="sponsored"`, and the page shows an affiliate disclosure, as Shopee and Google require.
 
-Likes are stored per browser only, because there is no backend yet. A future upload/likes backend can return the same JSON shape, and `hall.js` will keep working if you point `DATA_URL` at it.
+Social accounts (TikTok, Instagram, YouTube, Facebook) go in **`src/js/siteConfig.js`**. They appear in the footer once filled in.
 
 ## Regenerating icons and the OG image
 

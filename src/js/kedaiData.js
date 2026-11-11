@@ -9,7 +9,9 @@ export const DONATION = {
   // Put your DuitNow QR image at public/belanja/duitnow-qr.png (square PNG/JPG).
   // Set to '' to hide the QR box.
   qrImage: 'belanja/duitnow-qr.png',
-  qrName: '', // e.g. 'Aiman Zamri' - the name shown when people scan, so they know it's legit
+  qrName: '', // optional: the account name people see when they scan
+  // Short reassurance shown under the steps ('' to hide).
+  qrNote: 'Bila scan, nama penerima yang keluar ialah pembuat website Oyen. Normal, bukan scam 😹',
   // Optional extra ways to support. Remove any you don't use.
   links: [
     { label: 'Ko-fi', icon: '☕', url: '' },

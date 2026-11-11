@@ -68,6 +68,7 @@ function belanja() {
             <li>Masukkan jumlah ikan yang kau nak belanja. Siap! 🧡</li>
           </ol>
           ${DONATION.qrName ? `<p class="qr-name">Nama penerima: <b>${esc(DONATION.qrName)}</b></p>` : ''}
+          ${DONATION.qrNote ? `<p class="qr-name fineprint">${esc(DONATION.qrNote)}</p>` : ''}
           <a class="btn btn-primary" id="qr-save" href="${esc(qr)}" download="belanja-oyen-duitnow.png">Simpan QR 📥</a>
         </div>
       </div>`

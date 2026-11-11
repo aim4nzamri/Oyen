@@ -1,0 +1,140 @@
+{
+  "oyenOfTheWeek": {
+    "id": "kapten-oyen",
+    "reason": "Minggu ni Kapten berjaya 'rundingkan' 14 ekor ikan kembung dari bot nelayan tanpa sebarang bayaran. Nelayan pun dah give up."
+  },
+  "oyens": [
+    {
+      "id": "kapten-oyen",
+      "name": "Kapten Oyen",
+      "location": "Pulau Pinang",
+      "caption": "Kawal jeti sejak 2019. Nelayan bayar cukai seekor ikan sehari. Yang tak bayar? Jaring koyak.",
+      "mood": "samseng",
+      "palette": "pekat",
+      "photo": null,
+      "likes": 412,
+      "addedOn": "2026-11-09"
+    },
+    {
+      "id": "oyen-bin-kassim",
+      "name": "Oyen bin Kassim",
+      "location": "Kampung Baru, KL",
+      "caption": "Dah 3 kali kena halau dari kedai mamak, 4 kali datang balik. Sekarang dapat roti canai free tiap pagi.",
+      "mood": "smug",
+      "palette": "oren",
+      "photo": null,
+      "likes": 356,
+      "addedOn": "2026-10-28"
+    },
+    {
+      "id": "abang-long",
+      "name": "Abang Long",
+      "location": "Kota Bharu",
+      "caption": "Pernah curi seekor ayam golek. Satu ekor. Sorang. Sampai sekarang polis tak jumpa tulang.",
+      "mood": "pencuri",
+      "palette": "karat",
+      "photo": null,
+      "likes": 389,
+      "addedOn": "2026-11-02"
+    },
+    {
+      "id": "mak-cik-oren",
+      "name": "Mak Cik Oren",
+      "location": "Ipoh",
+      "caption": "Gesel kaki semua pelanggan kedai kopi. Dapat tips dalam bentuk telur separuh masak.",
+      "mood": "manja",
+      "palette": "cair",
+      "photo": null,
+      "likes": 274,
+      "addedOn": "2026-10-15"
+    },
+    {
+      "id": "tompok",
+      "name": "Tompok",
+      "location": "Shah Alam",
+      "caption": "Rekod tidur peribadi: 22 jam 14 minit. Bangun sebab dengar bunyi tin sardin dibuka dari 3 rumah sebelah.",
+      "mood": "tidur",
+      "palette": "krim",
+      "photo": null,
+      "likes": 198,
+      "addedOn": "2026-10-20"
+    },
+    {
+      "id": "puteri-oyen",
+      "name": "Puteri Oyen",
+      "location": "Johor Bahru",
+      "caption": "Menjerit 15 minit sebab mangkuk tinggal separuh. SEPARUH. Lepas tu merajuk, tidur dalam almari.",
+      "mood": "drama",
+      "palette": "oren",
+      "photo": null,
+      "likes": 231,
+      "addedOn": "2026-11-05"
+    },
+    {
+      "id": "boboi",
+      "name": "Boboi",
+      "location": "Kuching",
+      "caption": "Jatuh dari sofa. Pandang sofa macam sofa tu yang salah. Lepas tu jatuh lagi.",
+      "mood": "otak",
+      "palette": "cair",
+      "photo": null,
+      "likes": 367,
+      "addedOn": "2026-11-08"
+    },
+    {
+      "id": "jebat",
+      "name": "Jebat",
+      "location": "Alor Setar",
+      "caption": "Berlawan dengan kucing jiran tiap malam pukul 3 pagi. Skor terkini: Jebat 47, Jiran 2, Selipar Pak Mat 1.",
+      "mood": "samseng",
+      "palette": "karat",
+      "photo": null,
+      "likes": 301,
+      "addedOn": "2026-10-11"
+    },
+    {
+      "id": "labu",
+      "name": "Labu",
+      "location": "Kuantan",
+      "caption": "Badan bulat macam labu. Muat dalam kotak kasut? Tak. Masuk jugak? Ya.",
+      "mood": "otak",
+      "palette": "pekat",
+      "photo": null,
+      "likes": 255,
+      "addedOn": "2026-10-30"
+    },
+    {
+      "id": "pak-oyen",
+      "name": "Pak Oyen",
+      "location": "Melaka",
+      "caption": "Pesara. Kerja dia sekarang: tidur atas kereta orang, warm-up enjin dengan badan sendiri.",
+      "mood": "tidur",
+      "palette": "oren",
+      "photo": null,
+      "likes": 177,
+      "addedOn": "2026-09-30"
+    },
+    {
+      "id": "cik-mimi",
+      "name": "Cik Mimi",
+      "location": "Seremban",
+      "caption": "Hanya makan ikan bakar yang dibakar pada suhu tepat. Kalau tak, pandang tuan dia macam pengkhianat.",
+      "mood": "drama",
+      "palette": "krim",
+      "photo": null,
+      "likes": 142,
+      "addedOn": "2026-11-10"
+    },
+    {
+      "id": "oyen-kk",
+      "name": "Oyen KK",
+      "location": "Kota Kinabalu",
+      "caption": "Duduk depan kedai makan laut. Pelancong ingat dia maskot rasmi. Dia tak nafikan.",
+      "mood": "manja",
+      "palette": "pekat",
+      "photo": null,
+      "likes": 288,
+      "addedOn": "2026-11-06"
+    }
+  ]
+}

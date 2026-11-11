@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18 0 164 160" class="" role="img" aria-label="Oyen">
+  
+  <path d="M44 72 L50 18 L90 50 Z" fill="#FF8A1F" stroke="#3B2314" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M55 62 L58 34 L78 52 Z" fill="#FFB59A"/>
+  <!-- right ear with a fight notch -->
+  <path d="M110 50 L148 16 L144 34 L152 38 L156 72 Z" fill="#FF8A1F" stroke="#3B2314" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M122 52 L142 34 L146 60 Z" fill="#FFB59A"/>
+  <ellipse cx="100" cy="98" rx="64" ry="54" fill="#FF8A1F" stroke="#3B2314" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M100 46 v16 M86 48 l3 14 M114 48 l-3 14" stroke="#D9620B" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M38 96 l14 2 M40 110 l12 -2 M162 96 l-14 2 M160 110 l-12 -2" stroke="#D9620B" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <ellipse cx="89" cy="122" rx="16" ry="12" fill="#FFF1D6"/>
+  <ellipse cx="111" cy="122" rx="16" ry="12" fill="#FFF1D6"/>
+  <path d="M94 110 h12 l-6 7 Z" fill="#F27A8A" stroke="#3B2314" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M60 120 L24 114 M60 127 L26 130 M140 120 L176 114 M140 127 L174 130" stroke="#3B2314" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <ellipse cx="75" cy="96" rx="13" ry="11" fill="#C9E04A" stroke="#3B2314" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <ellipse cx="125" cy="96" rx="13" ry="11" fill="#C9E04A" stroke="#3B2314" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <ellipse cx="78" cy="100" rx="3" ry="6" fill="#3B2314"/>
+  <ellipse cx="128" cy="100" rx="3" ry="6" fill="#3B2314"/>
+  <path d="M59 80 H92 V95 L59 91 Z" fill="#FF8A1F"/>
+  <path d="M108 80 H141 V91 L108 95 Z" fill="#FF8A1F"/>
+  <path d="M61 91 L90 95 M110 95 L139 91" stroke="#3B2314" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M60 80 L88 86" stroke="#3B2314" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M110 76 Q126 64 142 74" stroke="#3B2314" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M100 117 Q94 126 85 122 M100 117 Q110 125 121 116" fill="none" stroke="#3B2314" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M112 121 l3 7 l3 -8" fill="#fff" stroke="#3B2314" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+  <g transform="rotate(-25 124 62)">
+    <rect x="110" y="56" width="28" height="11" rx="5" fill="#F6D7A7" stroke="#3B2314" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    <rect x="119" y="56" width="10" height="11" fill="#EBC28A"/>
+    <circle cx="122" cy="60" r="1" fill="#3B2314"/><circle cx="126" cy="63" r="1" fill="#3B2314"/>
+  </g>
+</svg>

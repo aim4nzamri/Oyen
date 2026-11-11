@@ -185,6 +185,22 @@ export function kuali(cx = 690, withFish = true, steam = true) {
     <path d="M${cx - 141} ${rim + 4} q-26 4 -36 -8" fill="none" stroke="${LINE}" stroke-width="12" stroke-linecap="round"/>`;
 }
 
+/** Plate lined with tissue on the counter. steam: 0 (cool) to 3 (just fried). */
+export function platter(cx = 400, withFish = true, steam = 3) {
+  const top = 520;
+  const steamLines = [-40, 0, 40]
+    .slice(0, steam)
+    .map((d) => `<path d="M${cx + d} ${top - 40} q-12 -20 0 -36 q12 -16 0 -34" fill="none" stroke="#C8B9A8" stroke-width="6" stroke-linecap="round" opacity=".85"/>`)
+    .join('');
+  const oil = `<ellipse cx="${cx - 30}" cy="${top + 16}" rx="16" ry="5" fill="#F2C14E" opacity=".75"/>
+    <ellipse cx="${cx + 34}" cy="${top + 20}" rx="12" ry="4" fill="#F2C14E" opacity=".75"/>
+    <ellipse cx="${cx + 4}" cy="${top + 24}" rx="9" ry="3" fill="#F2C14E" opacity=".75"/>`;
+  return `${withFish ? steamLines : ''}
+    <ellipse cx="${cx}" cy="${top + 22}" rx="120" ry="24" fill="#fff" ${S()}/>
+    <path d="M${cx - 92} ${top + 20} l14 -16 l16 10 l18 -14 l18 12 l18 -12 l18 12 l18 -12 l16 10 l14 -6 l8 18 q-90 26 -186 0 Z" fill="#FAFAF7" stroke="#D8D2C8" stroke-width="3" stroke-linejoin="round"/>
+    ${withFish ? fish(cx - 85, top - 50, 170) : oil}`;
+}
+
 export function burst(cx, cy, colorA = '#FFE3B3', colorB = '#FFF4E0') {
   let rays = '';
   const n = 28;

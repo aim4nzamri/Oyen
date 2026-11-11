@@ -612,3 +612,188 @@ main {
   width: 200px;
   height: auto;
 }
+
+/* ===== Game ===== */
+.game-page {
+  padding-top: 10px;
+  padding-bottom: 8px;
+}
+
+.game-title {
+  text-align: center;
+  font-size: clamp(1.3rem, 5.5vw, 2rem);
+  margin-bottom: 8px;
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: var(--game-w);
+  margin: 0 auto 8px;
+  font-weight: 700;
+}
+
+.hud-item b {
+  font-size: 1.25rem;
+  color: var(--orange-dark);
+}
+
+.hud-btn {
+  appearance: none;
+  font: inherit;
+  font-size: 1rem;
+  width: 40px;
+  height: 40px;
+  border: var(--border);
+  border-radius: 12px;
+  background: var(--white);
+  box-shadow: 3px 3px 0 var(--brown);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  flex: none;
+}
+
+.hud-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+/* Pause icon (two bars) that turns into a play triangle while paused. */
+.icon-pause {
+  width: 14px;
+  height: 16px;
+  border-left: 5px solid var(--brown);
+  border-right: 5px solid var(--brown);
+}
+
+.is-paused .icon-pause {
+  width: 0;
+  height: 0;
+  border-left: 14px solid var(--brown);
+  border-right: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  margin-left: 4px;
+}
+
+.game-page {
+  /* Board height = viewport minus header, HUD, paddings and the mobile tab bar. */
+  --game-h: calc(100svh - 196px - env(safe-area-inset-bottom));
+  --game-w: min(100%, 480px);
+}
+
+@media (max-width: 719px) {
+  .game-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+}
+
+@media (min-width: 720px) {
+  .game-page {
+    --game-h: calc(100svh - 190px);
+  }
+}
+
+.game-wrap {
+  position: relative;
+  width: var(--game-w);
+  height: clamp(400px, var(--game-h), 720px);
+  margin: 0 auto;
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  background: var(--cream);
+}
+
+#game {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 14px;
+  background: rgba(59, 35, 20, 0.45);
+  backdrop-filter: blur(2px);
+}
+
+.overlay[hidden] {
+  display: none;
+}
+
+.overlay-box {
+  width: 100%;
+  max-height: 100%;
+  overflow: auto;
+  text-align: center;
+  background: var(--cream);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 14px 16px 16px;
+  animation: pop 0.35s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+
+.overlay-box h2 {
+  font-size: 1.45rem;
+  margin-bottom: 4px;
+}
+
+.overlay-box p {
+  margin: 4px 0 8px;
+}
+
+.overlay-mascot svg {
+  width: 96px;
+  height: auto;
+}
+
+.howto {
+  list-style: none;
+  padding: 0;
+  margin: 6px 0;
+  font-weight: 700;
+}
+
+.controls-hint {
+  font-size: 0.9rem;
+  color: var(--brown-soft);
+}
+
+.final-score {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--orange-dark);
+}
+
+.record {
+  font-weight: 800;
+  font-size: 1.2rem;
+  animation: bob 1s ease-in-out infinite;
+}
+
+.over-line {
+  font-weight: 700;
+}
+
+.overlay-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}

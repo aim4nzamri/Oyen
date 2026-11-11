@@ -1,5 +1,6 @@
 // Draws a shareable result card onto a canvas (no external libraries).
 import { mascotSVG } from './mascot.js';
+import { loadImage } from './sprites.js';
 
 const W = 1080;
 const H = 1350;
@@ -46,15 +47,6 @@ function wrapLines(ctx, text, maxWidth) {
   return lines;
 }
 
-function loadSvg(svg) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = () => resolve(img);
-    img.onerror = reject;
-    img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-  });
-}
-
 /**
  * @param {{title:string, quote:string, desc:string, mood:string, power:string, stats:Record<string,number>}} result
  * @param {string} siteLabel short URL/label printed at the bottom
@@ -98,7 +90,7 @@ export async function drawResultCard(result, siteLabel) {
   boxed(ctx, cx, cy, cw, ch, 44, '#FFF4E0');
 
   // Mascot
-  const img = await loadSvg(mascotSVG({ mood: result.mood }));
+  const img = await loadImage(mascotSVG({ mood: result.mood }));
   const mw = 340;
   const mh = (mw * 228) / 200;
   ctx.drawImage(img, W / 2 - mw / 2 - 6, cy + 24, mw, mh);

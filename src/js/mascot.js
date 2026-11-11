@@ -159,19 +159,40 @@ const MOODS = {
   otak: { face: eyesDerp + mouthBlep, extra: brainCell },
 };
 
+// Fur colour variants (all still oren, just different shades).
+export const PALETTES = {
+  oren: { fur: C.fur, stripe: C.stripe },
+  cair: { fur: '#FFB25C', stripe: '#E8893A' }, // pale "oren cair"
+  pekat: { fur: '#F06A12', stripe: '#B8460A' }, // deep ginger
+  krim: { fur: '#FFD08A', stripe: '#F0A955' }, // cream-orange
+  karat: { fur: '#D9622B', stripe: '#9E3F14' }, // rusty
+};
+
 /**
  * @param {object} [opts]
  * @param {keyof typeof MOODS} [opts.mood]
+ * @param {keyof typeof PALETTES} [opts.palette]
  * @param {string} [opts.label] accessible label
  * @param {string} [opts.className]
  * @param {boolean} [opts.headOnly] crop to just the head (for logos)
  */
-export function mascotSVG({ mood = 'smug', label = 'Oyen, kucing oren samseng', className = '', headOnly = false } = {}) {
+export function mascotSVG({
+  mood = 'smug',
+  palette = 'oren',
+  label = 'Oyen, kucing oren samseng',
+  className = '',
+  headOnly = false,
+} = {}) {
   const m = MOODS[mood] || MOODS.smug;
   const viewBox = headOnly ? '18 0 164 160' : '0 0 200 228';
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" class="${className}" role="img" aria-label="${label}">
+  let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" class="${className}" role="img" aria-label="${label}">
   ${headOnly ? '' : body()}${head()}${m.face}${m.extra}
 </svg>`;
+  const p = PALETTES[palette];
+  if (p && palette !== 'oren') {
+    svg = svg.replaceAll(C.fur, p.fur).replaceAll(C.stripe, p.stripe);
+  }
+  return svg;
 }
 
 export const MOOD_NAMES = Object.keys(MOODS);

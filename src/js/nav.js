@@ -1,4 +1,5 @@
 import { mascotSVG } from './mascot.js';
+import { isSoundOn, setSound, onSoundChange, play } from './sound.js';
 
 const LINKS = [
   { id: 'home', href: './index.html', label: 'Laman Utama', short: 'Utama', icon: '🏠' },
@@ -22,9 +23,12 @@ export function mountNav() {
       ${mascotSVG({ headOnly: true, className: 'brand-logo', label: '' })}
       <span>Oyen</span>
     </a>
-    <nav class="top-nav" aria-label="Menu utama">
-      ${LINKS.map((l) => link(l, 'top-link', l.label)).join('')}
-    </nav>`;
+    <div class="header-right">
+      <nav class="top-nav" aria-label="Menu utama">
+        ${LINKS.map((l) => link(l, 'top-link', l.label)).join('')}
+      </nav>
+      <button class="sound-toggle" type="button"></button>
+    </div>`;
 
   const tabbar = document.createElement('nav');
   tabbar.className = 'tab-bar';
@@ -40,4 +44,45 @@ export function mountNav() {
   footer.className = 'site-footer';
   footer.innerHTML = `Dibuat dengan 🧡 untuk semua Oyen di Malaysia. <br/>Tiada kucing dicederakan. Ikan goreng, ya.`;
   document.querySelector('main')?.after(footer);
+
+  // Sound toggle
+  const btn = header.querySelector('.sound-toggle');
+  const sync = (on) => {
+    btn.textContent = on ? '🔊' : '🔇';
+    btn.setAttribute('aria-pressed', String(on));
+    btn.setAttribute('aria-label', on ? 'Bunyi: hidup. Tekan untuk senyap' : 'Bunyi: senyap. Tekan untuk hidupkan');
+    btn.title = on ? 'Senyapkan bunyi' : 'Hidupkan bunyi';
+  };
+  sync(isSoundOn());
+  onSoundChange(sync);
+  btn.addEventListener('click', () => {
+    setSound(!isSoundOn());
+    play('meow');
+  });
+
+  // Little click sound on buttons and quiz options
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.btn, .option, .seg button, .hud-btn')) play('click');
+  });
+}
+
+/** Emoji confetti burst from the top of the screen. */
+export function confetti(emojis = ['🧡', '🐟', '✨', '😼'], count = 28) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const layer = document.createElement('div');
+  layer.className = 'confetti';
+  layer.setAttribute('aria-hidden', 'true');
+  for (let i = 0; i < count; i++) {
+    const s = document.createElement('span');
+    s.textContent = emojis[i % emojis.length];
+    s.style.left = `${Math.random() * 100}%`;
+    s.style.setProperty('--x', `${(Math.random() - 0.5) * 160}px`);
+    s.style.setProperty('--r', `${(Math.random() - 0.5) * 720}deg`);
+    s.style.animationDelay = `${Math.random() * 0.4}s`;
+    s.style.animationDuration = `${1.6 + Math.random() * 1.2}s`;
+    s.style.fontSize = `${18 + Math.random() * 16}px`;
+    layer.append(s);
+  }
+  document.body.append(layer);
+  setTimeout(() => layer.remove(), 3500);
 }

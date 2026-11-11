@@ -17,6 +17,11 @@ The site is in Bahasa Melayu / Manglish. It's a static site built with **Vite + 
 
 **Hall of Fame:** a gallery of legendary orange cats loaded from `public/data/oyens.json`, with an "Oyen Minggu Ini" (Oyen of the Week) highlight, a Like 🧡 button saved in `localStorage`, and Popular/Terbaru sorting.
 
+**Polish:**
+- 🔊/🔇 sound toggle in the header. All sounds are synthesized with the Web Audio API, so there are no audio files.
+- Confetti, a wagging tail and page animations. They are reduced when `prefers-reduced-motion` is set.
+- Favicon, app icons, and Open Graph/Twitter meta tags for rich WhatsApp link previews.
+
 The quiz has 8 questions and 6 result types. Each result shows a stat card, a "Share to WhatsApp" link and a downloadable PNG card drawn on a `<canvas>`.
 
 ## Project structure
@@ -28,6 +33,9 @@ The quiz has 8 questions and 6 result types. Each result shows a stat card, a "S
 ├── game.html             # Game page
 ├── hall.html             # Hall of Fame
 ├── public/               # Static files copied as-is
+│   ├── og-image.png      # 1200x630 social preview image
+│   ├── favicon.svg, favicon-32.png, apple-touch-icon.png, icon-512.png
+│   ├── site.webmanifest
 │   ├── data/oyens.json   # Hall of Fame data
 │   └── oyens/            # Real cat photos go here
 ├── src/
@@ -40,9 +48,11 @@ The quiz has 8 questions and 6 result types. Each result shows a stat card, a "S
 │   │   ├── card.js       # Draws the downloadable result card on a canvas
 │   │   ├── game.js       # "Selamatkan Ikan Goreng" game loop, input, overlays
 │   │   ├── sprites.js    # SVG sprites (fish, selipar) + SVG-to-image loader
+│   │   ├── sound.js      # Synthesized sound effects + on/off state
 │   │   └── hall.js       # Hall of Fame gallery, likes, sorting
 │   └── styles/main.css   # All styles (design tokens at the top)
-├── vite.config.js        # Multi-page build config
+├── scripts/generate-assets.mjs  # Regenerates icons + OG image from the mascot
+├── vite.config.js        # Multi-page build config + SEO/OG tag injection
 └── .github/workflows/deploy.yml  # GitHub Pages deployment
 ```
 
@@ -68,6 +78,10 @@ Deployment is automatic via GitHub Actions (`.github/workflows/deploy.yml`).
 3. The site goes live at **https://aim4nzamri.github.io/Oyen/**. The URL path matches the repo name and is case-sensitive.
 
 You can also trigger a deploy manually from the **Actions** tab ("Deploy to GitHub Pages" → "Run workflow").
+
+The workflow passes the real Pages URL to the build as `SITE_URL`. A small plugin in `vite.config.js` then writes absolute `og:image` and `og:url` tags, which WhatsApp needs. For local builds it falls back to `https://aim4nzamri.github.io/Oyen/`. If you move to a custom domain, nothing needs changing.
+
+**WhatsApp preview cache:** WhatsApp caches previews per URL. If an old preview shows, add a query string such as `?v=2` to the link.
 
 `vite.config.js` uses `base: './'` (relative paths), so the build works under any repo name or custom domain without changes.
 
@@ -104,3 +118,12 @@ Everything is in `public/data/oyens.json`:
 To add a real cat, drop a photo into `public/oyens/`, add an entry with `"photo": "oyens/<file>.jpg"`, and push. To change the weekly winner, update `oyenOfTheWeek.id`.
 
 Likes are stored per browser only, because there is no backend yet. A future upload/likes backend can return the same JSON shape, and `hall.js` will keep working if you point `DATA_URL` at it.
+
+## Regenerating icons and the OG image
+
+The PNGs in `public/` are generated from the SVG mascot and committed. You only need to regenerate them after changing the mascot:
+
+```bash
+npm i -D playwright && npx playwright install chromium
+node scripts/generate-assets.mjs
+```

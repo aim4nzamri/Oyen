@@ -1,6 +1,8 @@
 import { mountNav } from './nav.js';
 import { mascotSVG } from './mascot.js';
 import { loadGameSprites } from './sprites.js';
+import { play } from './sound.js';
+import { confetti } from './nav.js';
 
 mountNav();
 
@@ -262,6 +264,7 @@ function update(dt) {
           hurtFor = 1.1;
           shake = 0.3;
           popup(pick(HIT_LINES), it.x, it.y - 20, '#D7263D');
+          play('hit');
           navigator.vibrate?.(120);
           if (lives <= 0) {
             updateHud();
@@ -272,6 +275,7 @@ function update(dt) {
         const pts = it.type === 'gold' ? 5 : 1;
         score += pts;
         eatFor = 0.35;
+        play(pts > 1 ? 'gold' : 'catch');
         popup(pts > 1 ? '+5 IKAN EMAS!' : `+1 ${pick(CATCH_LINES)}`, it.x, it.y - 20, pts > 1 ? '#C99700' : '#3B2314');
       }
       updateHud();
@@ -396,6 +400,12 @@ function gameOver() {
   state = 'over';
   draw();
   const isRecord = score > best;
+  if (isRecord && score > 0) {
+    play('record');
+    confetti(['🐟', '🧡', '🏆', '✨']);
+  } else {
+    play('over');
+  }
   if (isRecord) {
     best = score;
     setBest(best);

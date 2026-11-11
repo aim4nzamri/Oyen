@@ -1,5 +1,6 @@
 import { mountNav } from './nav.js';
 import { mascotSVG } from './mascot.js';
+import { play } from './sound.js';
 
 mountNav();
 
@@ -35,6 +36,10 @@ function poke() {
   i = (i + 1) % LINES.length;
   speech.textContent = LINES[i];
   render(MOODS[i % MOODS.length]);
+  play('meow');
+  holder.classList.remove('poked');
+  void holder.offsetWidth; // restart the animation
+  holder.classList.add('poked');
 }
 
 holder.addEventListener('click', poke);

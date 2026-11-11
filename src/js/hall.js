@@ -1,5 +1,6 @@
 import { mountNav } from './nav.js';
 import { mascotSVG } from './mascot.js';
+import { play } from './sound.js';
 
 mountNav();
 
@@ -170,6 +171,7 @@ root.addEventListener('click', (e) => {
       b.querySelector('.like-count').textContent = likeCount(cat).toLocaleString('en-MY');
     });
     if (on) {
+      play('like');
       burst(likeBtn);
       likeBtn.classList.remove('pop');
       void likeBtn.offsetWidth; // restart animation
@@ -186,8 +188,30 @@ root.addEventListener('click', (e) => {
       /* ignore */
     }
     render(data);
+    revealOnScroll();
   }
 });
+
+// Cards pop in as they scroll into view.
+function revealOnScroll() {
+  const cards = root.querySelectorAll('.oyen-card');
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          en.target.classList.add('is-in');
+          io.unobserve(en.target);
+        }
+      }),
+    { rootMargin: '0px 0px -40px 0px' },
+  );
+  cards.forEach((c, i) => {
+    c.classList.add('reveal');
+    c.style.transitionDelay = `${(i % 4) * 60}ms`;
+    io.observe(c);
+  });
+}
 
 (async () => {
   root.innerHTML = `<p class="loading">Oyen tengah kumpul geng... 🐾</p>`;
@@ -197,6 +221,7 @@ root.addEventListener('click', (e) => {
     data = await res.json();
     data.oyens = (data.oyens || []).filter((c) => c && c.id && c.name);
     render(data);
+    revealOnScroll();
   } catch (err) {
     console.error(err);
     root.innerHTML = `<section class="card soon">${mascotSVG({ mood: 'drama' })}

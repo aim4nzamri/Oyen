@@ -1,0 +1,12 @@
+{
+  "name": "Oyen — Kawasan Kucing Oren",
+  "short_name": "Oyen",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#FFF4E0",
+  "theme_color": "#FF8A1F",
+  "icons": [
+    { "src": "apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

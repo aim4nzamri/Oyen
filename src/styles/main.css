@@ -1127,3 +1127,151 @@ main {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ===== Phase 4 polish ===== */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sound-toggle {
+  appearance: none;
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  font-size: 1.25rem;
+  background: var(--cream);
+  border: var(--border);
+  border-radius: 50%;
+  box-shadow: 2px 2px 0 var(--brown);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sound-toggle:active {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+/* Page enter */
+main {
+  animation: pageIn 0.35s ease both;
+}
+
+@keyframes pageIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+/* Logo wiggle on hover */
+.brand:hover .brand-logo {
+  animation: wiggle 0.5s ease;
+}
+
+@keyframes wiggle {
+  25% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+  75% {
+    transform: rotate(-4deg);
+  }
+}
+
+/* Mascot tail wag (only on the big hero / result mascots) */
+.tail {
+  transform-box: view-box;
+  transform-origin: 150px 196px;
+}
+
+.hero-mascot .tail,
+.result-card .tail,
+.weekly-pic .tail,
+.quiz-intro .tail {
+  animation: wag 1.6s ease-in-out infinite;
+}
+
+@keyframes wag {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-12deg);
+  }
+}
+
+#hero-mascot.poked {
+  animation: poke 0.35s ease;
+}
+
+@keyframes poke {
+  30% {
+    transform: scale(1.08, 0.92);
+  }
+  60% {
+    transform: scale(0.96, 1.05);
+  }
+}
+
+/* Feature buttons */
+.feature {
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.feature:hover {
+  transform: translate(-2px, -2px) rotate(-1deg);
+  box-shadow: 8px 8px 0 var(--brown);
+}
+
+.feature:hover .feature-emoji {
+  animation: wiggle 0.5s ease;
+}
+
+/* Hall cards reveal */
+.oyen-card.reveal {
+  opacity: 0;
+  transform: translateY(20px) rotate(var(--tilt, 0deg));
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.oyen-card.reveal.is-in {
+  opacity: 1;
+  transform: rotate(var(--tilt, 0deg));
+}
+
+.oyen-card.reveal.is-in:hover {
+  transform: rotate(0deg) translateY(-3px);
+  transition-delay: 0s !important;
+}
+
+/* Confetti */
+.confetti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 50;
+}
+
+.confetti span {
+  position: absolute;
+  top: -40px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translate(var(--x), 110vh) rotate(var(--r));
+  }
+}

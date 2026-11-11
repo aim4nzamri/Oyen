@@ -1,4 +1,5 @@
-import { mountNav } from './nav.js';
+import { mountNav, confetti } from './nav.js';
+import { play } from './sound.js';
 import { mascotSVG } from './mascot.js';
 import { QUESTIONS, RESULTS } from './quizData.js';
 import { drawResultCard } from './card.js';
@@ -126,6 +127,9 @@ function renderResult(r) {
         <button class="btn" id="again">Main lagi 🔁</button>
       </div>
     </section>`;
+
+  play('result');
+  confetti();
 
   // Animate stat bars after paint.
   requestAnimationFrame(() =>

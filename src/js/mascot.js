@@ -18,9 +18,11 @@ const S = (w = 4, color = C.line) =>
 
 function body() {
   return `
+  <g class="tail">
   <path d="M150 196 C188 190 196 150 178 128" fill="none" stroke="${C.line}" stroke-width="20" stroke-linecap="round"/>
   <path d="M150 196 C188 190 196 150 178 128" fill="none" stroke="${C.fur}" stroke-width="12" stroke-linecap="round"/>
   <path d="M184 150 l-9 -3 M188 166 l-10 -1" ${S(3)}/>
+  </g>
   <ellipse cx="100" cy="182" rx="60" ry="40" fill="${C.fur}" ${S()}/>
   <ellipse cx="100" cy="188" rx="30" ry="26" fill="${C.cream}"/>
   <path d="M46 170 l14 4 M44 184 l14 1 M154 170 l-14 4 M156 184 l-14 1" ${S(4, C.stripe)}/>

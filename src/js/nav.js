@@ -1,11 +1,12 @@
 import { mascotSVG } from './mascot.js';
 import { isSoundOn, setSound, onSoundChange, play } from './sound.js';
+import { SOCIAL } from './siteConfig.js';
 
 const LINKS = [
   { id: 'home', href: './index.html', label: 'Laman Utama', short: 'Utama', icon: '🏠' },
   { id: 'quiz', href: './quiz.html', label: 'Kuiz', short: 'Kuiz', icon: '❓' },
   { id: 'game', href: './game.html', label: 'Game', short: 'Game', icon: '🐟' },
-  { id: 'hall', href: './hall.html', label: 'Hall of Fame', short: 'Hall', icon: '🏆' },
+  { id: 'kedai', href: './kedai.html', label: 'Kedai Oyen', short: 'Kedai', icon: '🛍️' },
 ];
 
 /** Injects the shared header (desktop) and bottom tab bar (mobile). */
@@ -42,7 +43,17 @@ export function mountNav() {
 
   const footer = document.createElement('footer');
   footer.className = 'site-footer';
-  footer.innerHTML = `Dibuat dengan 🧡 untuk semua Oyen di Malaysia. <br/>Tiada kucing dicederakan. Ikan goreng, ya.`;
+  const socials = SOCIAL.filter((s) => /^https:\/\//i.test(s.url || ''));
+  footer.innerHTML = `
+    ${current !== 'kedai' ? '<a class="footer-belanja" href="./kedai.html#belanja">🐟 Suka Oyen? Belanja dia ikan</a>' : ''}
+    ${
+      socials.length
+        ? `<p class="footer-social">Ikut Oyen: ${socials
+            .map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.icon} ${s.label}</a>`)
+            .join(' · ')}</p>`
+        : ''
+    }
+    <p>Dibuat dengan 🧡 untuk semua Oyen di Malaysia. <br/>Tiada kucing dicederakan. Ikan goreng, ya.</p>`;
   document.querySelector('main')?.after(footer);
 
   // Sound toggle

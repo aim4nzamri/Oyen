@@ -48,7 +48,7 @@ await shot(
       <div style="font-weight:800;font-size:150px;line-height:1;margin-top:16px;text-shadow:6px 6px 0 #FFC285">Oyen</div>
       <div style="font-weight:800;font-size:44px;line-height:1.15;margin-top:6px">Jangan kacau.<br/>Bawak ikan goreng.</div>
       <div style="display:flex;gap:12px;margin-top:34px;flex-wrap:wrap">
-        ${['❓ Kuiz', '🐟 Game', '🏆 Hall of Fame']
+        ${['❓ Kuiz', '🐟 Game', '🛍️ Kedai Oyen']
           .map(
             (t) =>
               `<span style="background:#FFF4E0;border:5px solid #3B2314;border-radius:18px;box-shadow:5px 5px 0 #3B2314;padding:4px 18px;font-weight:800;font-size:32px">${t}</span>`,

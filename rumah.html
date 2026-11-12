@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ms">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#ff8a1f" />
+    <title>Rumah Oyen &amp; Abu — Cozy Game</title>
+    <meta name="description" content="Letak barang, tunggu Oyen dan Abu datang, ambil gambar dan kumpul kenangan. Cozy game kucing Malaysia." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./src/styles/main.css" />
+  </head>
+  <body data-page="rumah">
+    <main class="rumah">
+      <div class="rumah-top">
+        <span class="ikan-pill" aria-label="Ikan">🐟 <b id="ikan">0</b></span>
+        <div class="rumah-actions">
+          <button class="btn btn-sm" data-act="shop">🛍️ Kedai</button>
+          <button class="btn btn-sm btn-primary" data-act="album">📷 Album</button>
+        </div>
+      </div>
+      <nav class="area-tabs" id="area-tabs" aria-label="Kawasan rumah"></nav>
+      <div class="scene-wrap">
+        <div class="scene" id="scene" aria-live="polite"></div>
+        <div class="toast" id="toast" role="status" hidden></div>
+      </div>
+      <p class="rumah-status" id="status"></p>
+      <p class="rumah-hint">Tekan <b>+</b> untuk letak barang. Bila Oyen atau Abu datang, tekan mereka untuk ambil gambar 📸</p>
+      <div class="sheet" id="sheet" hidden></div>
+    </main>
+    <script type="module" src="./src/js/rumah.js"></script>
+  </body>
+</html>

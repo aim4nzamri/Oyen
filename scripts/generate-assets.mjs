@@ -12,6 +12,7 @@ const dataUrl = (f) => `data:image/webp;base64,${readFileSync(pub(f)).toString('
 const OYEN = dataUrl('characters/oyen.webp');
 const ABU = dataUrl('characters/abu.webp');
 const OYEN_HEAD = dataUrl('characters/oyen-head.webp');
+const LOGO = dataUrl('brand/logo.webp');
 const FONT = `<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">`;
 
 const browser = await chromium.launch();
@@ -48,22 +49,18 @@ await shot(
   `<div style="width:1200px;height:630px;background:#FF8A1F;position:relative;overflow:hidden;
     background-image:radial-gradient(rgba(255,255,255,.22) 4px,transparent 4px);background-size:44px 44px">
     <div style="position:absolute;left:40px;top:40px;width:600px;height:550px;background:#FFF4E0;border:8px solid #3B2314;
-      border-radius:48px;box-shadow:14px 14px 0 #3B2314"></div>
+      border-radius:48px"></div>
     <img src="${OYEN}" style="position:absolute;left:70px;bottom:52px;width:330px">
     <img src="${ABU}" style="position:absolute;left:372px;bottom:52px;width:250px">
     <div style="position:absolute;left:690px;top:70px;right:40px">
       <div style="display:inline-block;background:#3B2314;color:#FFD23F;font-weight:800;font-size:30px;padding:4px 24px;border-radius:999px;transform:rotate(-2deg)">⚠️ KAWASAN KAMI</div>
-      <div style="font-weight:800;font-size:112px;line-height:1;margin-top:18px">
-        <span style="color:#E86A00;text-shadow:6px 6px 0 #3B2314">Oyen</span><br/>
-        <span style="font-size:70px">&amp;</span>
-        <span style="color:#8E8C94;text-shadow:6px 6px 0 #3B2314">Abu</span>
-      </div>
-      <div style="font-weight:800;font-size:36px;line-height:1.2;margin-top:18px">Satu samseng dalam rumah.<br/>Satu comel luar rumah.</div>
+      <img src="${LOGO}" style="display:block;width:430px;margin:14px 0 0 -8px">
+      <div style="font-weight:800;font-size:34px;line-height:1.2;margin-top:10px">Satu samseng dalam rumah.<br/>Satu comel luar rumah.</div>
       <div style="display:flex;gap:10px;margin-top:26px;flex-wrap:wrap">
         ${['❓ Kuiz', '🐟 Game', '🛍️ Kedai']
           .map(
             (t) =>
-              `<span style="background:#FFF4E0;border:5px solid #3B2314;border-radius:18px;box-shadow:5px 5px 0 #3B2314;padding:2px 16px;font-weight:800;font-size:28px">${t}</span>`,
+              `<span style="background:#FFF4E0;border:5px solid #3B2314;border-radius:18px;padding:2px 16px;font-weight:800;font-size:28px">${t}</span>`,
           )
           .join('')}
       </div>

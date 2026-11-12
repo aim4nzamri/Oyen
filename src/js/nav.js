@@ -24,7 +24,7 @@ export function mountNav() {
         <img src="./characters/oyen-head.webp" width="160" height="125" alt="" class="head-oyen" />
         <img src="./characters/abu-head.webp" width="160" height="130" alt="" class="head-abu" />
       </span>
-      <span class="brand-name">Oyen <i>&amp;</i> Abu</span>
+      <img class="brand-logo-img" src="./brand/logo-small.webp" width="200" height="127" alt="" />
     </a>
     <div class="header-right">
       <nav class="top-nav" aria-label="Menu utama">

@@ -2564,3 +2564,32 @@ h3 {
   height: 110px;
   object-fit: contain;
 }
+
+/* ---------- official "Oyen & Abu" logo ---------- */
+.duo-logo {
+  margin: 4px auto 4px;
+  line-height: 0;
+}
+
+.duo-logo img {
+  width: min(330px, 78vw);
+  height: auto;
+  animation: logoIn 0.6s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+
+@keyframes logoIn {
+  from {
+    transform: scale(0.6) rotate(-6deg);
+    opacity: 0;
+  }
+}
+
+.brand-logo-img {
+  height: 46px;
+  width: auto;
+  display: block;
+}
+
+.brand:hover .brand-logo-img {
+  animation: wiggle 0.5s ease;
+}

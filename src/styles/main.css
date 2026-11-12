@@ -1950,3 +1950,520 @@ main {
   width: 100%;
   height: auto;
 }
+
+
+/* =====================================================================
+   CHIBI COMIC THEME
+   Matches the character art: round shapes, thick black outlines,
+   flat cel shading, bright warm colours, comic effects.
+   ===================================================================== */
+:root {
+  --brown: #1F1410; /* ink: outlines, shadows, headings */
+  --text: #2B1B14;
+  --radius: 26px;
+  --border: 3.5px solid var(--brown);
+  /* outer hard shadow + inner flat "cel" shade at the bottom */
+  --shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.1), 4px 4px 0 var(--brown);
+  --shadow-lg: inset 0 -8px 0 rgba(0, 0, 0, 0.07), 6px 6px 0 var(--brown);
+  --font-display: 'Fredoka', 'Baloo 2', system-ui, sans-serif;
+  --halftone-ink: radial-gradient(circle, rgba(31, 20, 16, 0.14) 1.7px, transparent 2.1px);
+  --halftone-orange: radial-gradient(circle, rgba(232, 106, 0, 0.22) 2.2px, transparent 2.6px);
+}
+
+body {
+  color: var(--text);
+  /* soft halftone page texture that fades toward the middle */
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(circle at 0% 0%, transparent 0, var(--cream) 380px),
+    var(--halftone-orange);
+  background-size:
+    100% 100%,
+    16px 16px;
+  background-attachment: fixed;
+}
+
+h1,
+h2,
+h3,
+.brand-name,
+.btn,
+.tab-link,
+.top-link,
+.duo-title {
+  font-family: var(--font-display);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--brown);
+  font-weight: 700;
+}
+
+/* ---------- header ---------- */
+.site-header {
+  border-bottom: 4px solid var(--brown);
+  background-color: var(--orange);
+  background-image:
+    linear-gradient(90deg, var(--orange) 40%, rgba(255, 138, 31, 0.5) 100%),
+    var(--halftone-ink);
+  background-size:
+    100% 100%,
+    12px 12px;
+}
+
+.brand-name {
+  font-weight: 700;
+  -webkit-text-stroke: 0;
+  text-shadow:
+    2px 2px 0 var(--cream),
+    -1px -1px 0 var(--cream),
+    1px -1px 0 var(--cream),
+    -1px 1px 0 var(--cream);
+}
+
+.brand-name i {
+  color: var(--white);
+  text-shadow: 2px 2px 0 var(--brown);
+}
+
+.brand-heads img {
+  border-width: 3.5px;
+  box-shadow: 2px 2px 0 var(--brown);
+}
+
+.top-link {
+  border-radius: 999px;
+}
+
+.sound-toggle {
+  border-width: 3.5px;
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.1), 3px 3px 0 var(--brown);
+}
+
+/* ---------- tab bar ---------- */
+.tab-bar {
+  border-top: 4px solid var(--brown);
+  background: var(--white);
+  padding-left: 6px;
+  padding-right: 6px;
+  gap: 4px;
+}
+
+.tab-link {
+  margin: 6px 0;
+  border-radius: 18px;
+  border: 3px solid transparent;
+}
+
+.tab-link.is-active {
+  background: var(--orange);
+  border-color: var(--brown);
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.12), 2px 2px 0 var(--brown);
+}
+
+/* ---------- buttons: pill shape + cel highlight ---------- */
+.btn,
+.option,
+.like,
+.seg,
+.filters button,
+.jump a,
+.footer-belanja,
+.hud-btn {
+  border-width: 3.5px;
+}
+
+.btn {
+  position: relative;
+  border-radius: 999px;
+  padding: 12px 22px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.btn::before {
+  /* glossy cel highlight */
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 16px;
+  width: 22px;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  transform: rotate(-8deg);
+  pointer-events: none;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #ffa244 0 55%, var(--orange) 55% 100%);
+}
+
+.btn-whatsapp {
+  background: linear-gradient(180deg, #4fe08a 0 55%, #25d366 55% 100%);
+}
+
+.btn:disabled::before {
+  display: none;
+}
+
+/* ---------- cards: rounder, cel shade, halftone corner ---------- */
+.card,
+.feature,
+.meet-card,
+.product,
+.oyen-card,
+.result-card,
+.overlay-box,
+.weekly {
+  border-width: 3.5px;
+  border-radius: var(--radius);
+}
+
+.card,
+.meet-card,
+.product,
+.feature {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.card::after,
+.meet-card::after,
+.product::after,
+.feature::after {
+  /* halftone shading in the bottom-right corner */
+  content: '';
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  width: 55%;
+  height: 60%;
+  background-image: var(--halftone-ink);
+  background-size: 10px 10px;
+  -webkit-mask-image: radial-gradient(circle at 100% 100%, #000 0, transparent 70%);
+  mask-image: radial-gradient(circle at 100% 100%, #000 0, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.feature {
+  border-radius: 28px;
+}
+
+.feature-emoji {
+  border-width: 3.5px;
+  background: var(--white);
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.08), 2px 2px 0 var(--brown);
+}
+
+.feature:nth-child(1) {
+  transform: rotate(-1deg);
+}
+.feature:nth-child(2) {
+  transform: rotate(0.8deg);
+}
+.feature:nth-child(3) {
+  transform: rotate(-0.6deg);
+}
+
+/* ---------- comic section titles: caption boxes with a sparkle ---------- */
+.comic-title {
+  position: relative;
+  display: inline-block;
+  background: #ffd23f;
+  border: var(--border);
+  border-radius: 16px;
+  padding: 2px 18px 4px;
+  box-shadow: inset 0 -5px 0 rgba(0, 0, 0, 0.1), 4px 4px 0 var(--brown);
+  transform: rotate(-1.5deg);
+  font-size: 1.45rem !important;
+}
+
+.comic-title::after {
+  content: '';
+  position: absolute;
+  right: -22px;
+  top: -18px;
+  width: 30px;
+  height: 30px;
+  background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2040%2040%22%3E%3Cpath%20d%3D%22M20%202%20Q23%2017%2038%2020%20Q23%2023%2020%2038%20Q17%2023%202%2020%20Q17%2017%2020%202%20Z%22%20fill%3D%22%23FFD23F%22%20stroke%3D%22%231F1410%22%20stroke-width%3D%223%22%20stroke-linejoin%3D%22round%22/%3E%3C/svg%3E") center / contain no-repeat;
+  animation: twinkle 1.8s ease-in-out infinite;
+}
+
+.comic-title-wrap {
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+/* ---------- hero: comic panel with speed lines + halftone ---------- */
+.duo-title {
+  font-weight: 700;
+  font-size: clamp(2.8rem, 13vw, 4.6rem);
+}
+
+.duo-title .t-oyen,
+.duo-title .t-abu {
+  text-shadow:
+    3px 0 0 var(--brown),
+    -3px 0 0 var(--brown),
+    0 3px 0 var(--brown),
+    0 -3px 0 var(--brown),
+    2px 2px 0 var(--brown),
+    -2px -2px 0 var(--brown),
+    2px -2px 0 var(--brown),
+    -2px 2px 0 var(--brown),
+    5px 6px 0 var(--brown);
+}
+
+.duo-title .t-oyen {
+  color: #ff9a2e;
+}
+
+.duo-title .t-abu {
+  color: #b9b7c2;
+}
+
+.duo-title .amp {
+  color: var(--brown);
+}
+
+.hero-duo .lead {
+  font-weight: 600;
+}
+
+.duo {
+  position: relative;
+  max-width: 600px;
+  padding: 14px 12px 14px;
+  border: 4px solid var(--brown);
+  border-radius: 32px;
+  box-shadow: inset 0 -10px 0 rgba(0, 0, 0, 0.06), 6px 6px 0 var(--brown);
+  background: repeating-conic-gradient(from 0deg at 50% 62%, #fff8ea 0deg 7deg, #ffe4bd 7deg 14deg);
+  isolation: isolate;
+}
+
+.duo::before {
+  /* halftone fade in the top corners */
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--halftone-orange);
+  background-size: 12px 12px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 60%, transparent 40%, #000 95%);
+  mask-image: radial-gradient(ellipse at 50% 60%, transparent 40%, #000 95%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.duo-cat img {
+  filter: none;
+}
+
+.duo-cat .speech {
+  border-width: 3.5px;
+  border-radius: 20px;
+  box-shadow: 3px 3px 0 var(--brown);
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.duo-cat .speech::after {
+  border-right-width: 3.5px;
+  border-bottom-width: 3.5px;
+}
+
+/* ---------- comic FX ---------- */
+.fx-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.fx {
+  position: absolute;
+  display: block;
+  transform: rotate(var(--rot, 0deg));
+}
+
+.fx svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.fx-sparkle {
+  animation: twinkle 1.9s ease-in-out infinite;
+}
+
+.fx-heart {
+  animation: floaty 2.6s ease-in-out infinite;
+}
+
+.fx-sweat {
+  animation: drip 2.2s ease-in infinite;
+}
+
+.fx-anger {
+  animation: throb 1.1s ease-in-out infinite;
+}
+
+.fx-anger.burst,
+.fx-sweat.burst {
+  animation: fxPop 0.45s cubic-bezier(0.2, 1.8, 0.4, 1);
+}
+
+.fx-fish {
+  animation: floaty 3s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    transform: rotate(var(--rot, 0deg)) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: rotate(calc(var(--rot, 0deg) + 25deg)) scale(0.6);
+    opacity: 0.6;
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: rotate(var(--rot, 0deg)) translateY(0);
+  }
+  50% {
+    transform: rotate(var(--rot, 0deg)) translateY(-8px);
+  }
+}
+
+@keyframes drip {
+  0% {
+    transform: translateY(-4px);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+}
+
+@keyframes throb {
+  0%,
+  100% {
+    transform: rotate(var(--rot, 0deg)) scale(1);
+  }
+  50% {
+    transform: rotate(var(--rot, 0deg)) scale(1.18);
+  }
+}
+
+@keyframes fxPop {
+  0% {
+    transform: scale(0.2);
+  }
+  70% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* speed lines that flash behind a poked character */
+.duo-cat::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  width: 150%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%) scale(0.6);
+  border-radius: 50%;
+  background: repeating-conic-gradient(var(--brown) 0deg 1.4deg, transparent 1.4deg 12deg);
+  -webkit-mask-image: radial-gradient(circle, transparent 38%, #000 40%, transparent 70%);
+  mask-image: radial-gradient(circle, transparent 38%, #000 40%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.duo-cat.poked::before {
+  animation: speedFlash 0.5s ease-out;
+}
+
+@keyframes speedFlash {
+  0% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(0.7);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+/* ---------- other components ---------- */
+.meet-card {
+  border-radius: 28px;
+}
+
+.meet-oyen {
+  background: linear-gradient(180deg, #ffe7c7 0 88%, #ffd9a8 88% 100%);
+}
+
+.meet-abu {
+  background: linear-gradient(180deg, #eeedf4 0 88%, #dfdde8 88% 100%);
+}
+
+.tag {
+  border-width: 2.5px;
+  font-family: var(--font-display);
+}
+
+.facts {
+  background: var(--white);
+}
+
+.progress,
+.stat-track {
+  border-color: var(--brown);
+}
+
+.option {
+  border-radius: 20px;
+}
+
+.option-key {
+  font-family: var(--font-display);
+  border-width: 3px;
+}
+
+.speech {
+  border-radius: 20px;
+}
+
+.footer-belanja {
+  background: linear-gradient(180deg, #ffe066 0 55%, #ffd23f 55% 100%);
+  box-shadow: 3px 3px 0 var(--brown);
+}
+
+.game-wrap {
+  border-width: 4px;
+  border-radius: 28px;
+}

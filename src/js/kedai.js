@@ -119,7 +119,7 @@ function barang() {
   const list = filter === 'semua' ? PRODUCTS : PRODUCTS.filter((p) => p.category === filter);
   return `
     <section class="barang" id="barang" aria-labelledby="barang-title">
-      <h2 id="barang-title">Barang Wajib Oyen 🛒</h2>
+      <div class="comic-title-wrap"><h2 id="barang-title" class="comic-title">Barang Wajib Oyen 🛒</h2></div>
       <p>Oyen dah review. Jujur. Sebab dia tak reti tipu (dia reti curi je).</p>
       <div class="filters" role="group" aria-label="Tapis kategori">
         <button data-filter="semua" aria-pressed="${filter === 'semua'}">Semua</button>
@@ -151,7 +151,7 @@ function merch() {
   return `
     <section class="merch card" id="merch" aria-labelledby="merch-title">
       <span class="soon-badge">AKAN DATANG</span>
-      <h2 id="merch-title">Merch Oyen &amp; Abu 👕</h2>
+      <div class="comic-title-wrap"><h2 id="merch-title" class="comic-title">Merch Oyen &amp; Abu 👕</h2></div>
       <p>T-shirt Oyen "Samseng Kawasan", sticker Abu "Comel Rasmi", tote bag dan banyak lagi. Oyen tengah berunding dengan kilang (dia ugut). Abu cuma senyum.</p>
       <div class="merch-row">${tee}${sticker}</div>
     </section>`;

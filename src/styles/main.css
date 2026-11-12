@@ -2467,3 +2467,26 @@ h3 {
   border-width: 4px;
   border-radius: 28px;
 }
+
+/* ---------- no drop shadows on cards (outline + inner cel shade only) ---------- */
+:root {
+  --shadow-lg: inset 0 -8px 0 rgba(0, 0, 0, 0.07);
+  --card-shade: inset 0 -6px 0 rgba(0, 0, 0, 0.07);
+}
+
+.card,
+.feature,
+.feature:hover,
+.meet-card,
+.product,
+.oyen-card,
+.oyen-card:hover,
+.result-card,
+.overlay-box,
+.weekly,
+.qr-box,
+.duo,
+.game-wrap,
+.tiers li {
+  box-shadow: var(--card-shade);
+}

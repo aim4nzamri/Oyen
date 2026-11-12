@@ -1,4 +1,3 @@
-import { mascotSVG } from './mascot.js';
 import { isSoundOn, setSound, onSoundChange, play } from './sound.js';
 import { SOCIAL } from './siteConfig.js';
 
@@ -20,9 +19,12 @@ export function mountNav() {
   const header = document.createElement('header');
   header.className = 'site-header';
   header.innerHTML = `
-    <a href="./index.html" class="brand" aria-label="Oyen - Laman Utama">
-      ${mascotSVG({ headOnly: true, className: 'brand-logo', label: '' })}
-      <span>Oyen</span>
+    <a href="./index.html" class="brand" aria-label="Oyen & Abu - Laman Utama">
+      <span class="brand-heads" aria-hidden="true">
+        <img src="./characters/oyen-head.webp" width="160" height="125" alt="" class="head-oyen" />
+        <img src="./characters/abu-head.webp" width="160" height="130" alt="" class="head-abu" />
+      </span>
+      <span class="brand-name">Oyen <i>&amp;</i> Abu</span>
     </a>
     <div class="header-right">
       <nav class="top-nav" aria-label="Menu utama">
@@ -45,7 +47,7 @@ export function mountNav() {
   footer.className = 'site-footer';
   const socials = SOCIAL.filter((s) => /^https:\/\//i.test(s.url || ''));
   footer.innerHTML = `
-    ${current !== 'kedai' ? '<a class="footer-belanja" href="./kedai.html#belanja">🐟 Suka Oyen? Belanja dia ikan</a>' : ''}
+    ${current !== 'kedai' ? '<a class="footer-belanja" href="./kedai.html#belanja">🐟 Suka Oyen &amp; Abu? Belanja diorang ikan</a>' : ''}
     ${
       socials.length
         ? `<p class="footer-social">Ikut Oyen: ${socials
@@ -53,7 +55,7 @@ export function mountNav() {
             .join(' · ')}</p>`
         : ''
     }
-    <p>Dibuat dengan 🧡 untuk semua Oyen di Malaysia. <br/>Tiada kucing dicederakan. Ikan goreng, ya.</p>`;
+    <p>Dibuat dengan 🧡🩶 untuk semua Oyen &amp; Abu di Malaysia. <br/>Tiada kucing dicederakan. Ikan goreng, ya.</p>`;
   document.querySelector('main')?.after(footer);
 
   // Sound toggle

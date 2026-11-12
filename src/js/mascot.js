@@ -151,6 +151,46 @@ const brainCell = `
   <path d="M96 20 q4 -4 8 0 M96 25 q4 3 8 0" fill="none" ${S(1.8)}/>
   <path d="M84 12 l-6 -4 M116 12 l6 -4 M100 6 v-4" ${S(3, "#FFC400")}/>`;
 
+// ---------- comic expressions ----------
+const star = (x, y, r = 6) =>
+  `<path d="M${x} ${y - r} L${x + r * 0.3} ${y - r * 0.3} L${x + r} ${y} L${x + r * 0.3} ${y + r * 0.3} L${x} ${y + r} L${x - r * 0.3} ${y + r * 0.3} L${x - r} ${y} L${x - r * 0.3} ${y - r * 0.3} Z" fill="#fff"/>`;
+
+const eyesFocus = `
+  <ellipse cx="75" cy="97" rx="14" ry="13" fill="${C.eye}" ${S(3)}/>
+  <ellipse cx="125" cy="97" rx="14" ry="13" fill="${C.eye}" ${S(3)}/>
+  <circle cx="77" cy="99" r="8" fill="${C.line}"/><circle cx="127" cy="99" r="8" fill="${C.line}"/>
+  <circle cx="80" cy="95" r="3" fill="#fff"/><circle cx="130" cy="95" r="3" fill="#fff"/>
+  <path d="M58 79 L90 86 M110 86 L142 79" ${S(4.5)}/>`;
+const mouthFlat = `<path d="M92 121 Q100 125 108 121" fill="none" ${S(3)}/>`;
+
+const eyesBling = `
+  <ellipse cx="75" cy="96" rx="16" ry="16" fill="${C.eye}" ${S(3)}/>
+  <ellipse cx="125" cy="96" rx="16" ry="16" fill="${C.eye}" ${S(3)}/>
+  <circle cx="75" cy="97" r="11" fill="${C.line}"/><circle cx="125" cy="97" r="11" fill="${C.line}"/>
+  ${star(78, 93, 7)}${star(128, 93, 7)}
+  <circle cx="70" cy="103" r="2" fill="#fff"/><circle cx="120" cy="103" r="2" fill="#fff"/>`;
+const mouthDrool = `
+  <path d="M90 119 Q100 134 110 119 Z" fill="#B5303F" ${S(3)}/>
+  <path d="M107 127 q-4 9 0 12 q4 -3 0 -12 Z" fill="#9BD6FF" ${S(2)}/>`;
+
+const oilyShine = `${star(117, 128, 5)}${star(84, 129, 4)}
+  <path d="M92 127 q8 4 16 0" fill="none" stroke="#F2C14E" stroke-width="3" stroke-linecap="round" opacity=".9"/>`;
+
+const eyesSideways = `
+  <ellipse cx="75" cy="96" rx="13" ry="11" fill="${C.eye}" ${S(3)}/>
+  <ellipse cx="125" cy="96" rx="13" ry="11" fill="${C.eye}" ${S(3)}/>
+  <ellipse cx="67" cy="99" rx="3.5" ry="6" fill="${C.line}"/>
+  <ellipse cx="117" cy="99" rx="3.5" ry="6" fill="${C.line}"/>
+  <path d="M59 80 H92 V93 L59 93 Z M108 80 H141 V93 L108 93 Z" fill="${C.fur}"/>
+  <path d="M61 93 H90 M110 93 H139" ${S(3.5)}/>`;
+const fishTail = `
+  <path d="M90 121 Q100 118 110 121" fill="none" ${S(3)}/>
+  <path d="M104 118 Q118 116 128 124 L150 104 Q146 126 156 148 L128 132 Q116 136 104 130 Z" fill="#C9772A" ${S(3)}/>
+  <path d="M132 124 l14 -10 M134 130 l16 6" stroke="#8A4510" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M112 122 l4 8" stroke="#8A4510" stroke-width="2.5" stroke-linecap="round"/>`;
+const sweat = `<path d="M152 62 q-7 12 0 16 q7 -4 0 -16 Z" fill="#9BD6FF" ${S(2.5)}/>
+  <path d="M160 82 q-5 8 0 11 q5 -3 0 -11 Z" fill="#9BD6FF" ${S(2)}/>`;
+
 const MOODS = {
   smug: { face: eyesSmug + mouthSmirk, extra: bandaid },
   samseng: { face: mouthSmirk + shades, extra: bandaid + toothpick },
@@ -159,6 +199,11 @@ const MOODS = {
   tidur: { face: eyesSleep + mouthSleep, extra: zzz },
   drama: { face: eyesDrama + mouthWail, extra: crown },
   otak: { face: eyesDerp + mouthBlep, extra: brainCell },
+  // comic-only expressions
+  fokus: { face: eyesFocus + mouthFlat, extra: bandaid },
+  bling: { face: eyesBling + mouthDrool, extra: bandaid },
+  innocent: { face: eyesHappy + mouthCute + oilyShine, extra: bandaid },
+  serius: { face: eyesSideways + fishTail, extra: bandaid + sweat },
 };
 
 // Fur colour variants (all still oren, just different shades).

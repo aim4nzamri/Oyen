@@ -22,7 +22,7 @@ function renderIntro() {
   answers = [];
   root.innerHTML = `
     <section class="quiz-intro card slide-in">
-      ${mascotSVG({ mood: 'smug' })}
+      <img class="quiz-hero" src="./characters/oyen.webp" width="560" height="680" alt="Oyen tengah menilai kau" />
       <h1>Oyen Kau Jenis Apa?</h1>
       <p>Semua kucing oren kongsi satu sel otak, tapi perangai lain-lain. Jawab ${QUESTIONS.length} soalan ni dengan jujur. Oyen tengah tengok.</p>
       <button class="btn btn-primary" id="start">Jom mula! 🐾</button>

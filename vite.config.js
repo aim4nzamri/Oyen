@@ -6,7 +6,7 @@ import { defineConfig } from 'vite';
 // real Pages URL via SITE_URL; this default is used for local builds.
 const SITE_URL = (process.env.SITE_URL || 'https://aim4nzamri.github.io/Oyen/').replace(/\/?$/, '/');
 
-const attr = (s) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+const attr = (s) => s.replace(/&amp;/g, '&').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
 
 /** Injects favicon, manifest, Open Graph and Twitter tags into every page. */
 function seoTags() {
@@ -19,13 +19,12 @@ function seoTags() {
       const desc = html.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? '';
       const image = `${SITE_URL}og-image.png`;
       const tags = `
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="icon" href="./favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="./favicon-64.png" sizes="64x64" type="image/png" />
     <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
     <link rel="manifest" href="./site.webmanifest" />
     <link rel="canonical" href="${url}" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Oyen" />
+    <meta property="og:site_name" content="Oyen &amp; Abu" />
     <meta property="og:locale" content="ms_MY" />
     <meta property="og:url" content="${url}" />
     <meta property="og:title" content="${attr(title)}" />
@@ -33,7 +32,7 @@ function seoTags() {
     <meta property="og:image" content="${image}" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Oyen, kucing oren samseng pakai cermin mata hitam" />
+    <meta property="og:image:alt" content="Oyen si kucing oren dan Abu si kucing kelabu" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${attr(title)}" />
     <meta name="twitter:description" content="${attr(desc)}" />

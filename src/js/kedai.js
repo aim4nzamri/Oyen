@@ -1,5 +1,4 @@
 import { mountNav } from './nav.js';
-import { mascotSVG } from './mascot.js';
 import { play } from './sound.js';
 import { DONATION, CATEGORIES, PRODUCTS } from './kedaiData.js';
 
@@ -18,12 +17,15 @@ let filter = 'semua';
 function hero() {
   return `
     <section class="kedai-hero">
-      <div class="kedai-hero-pic">${mascotSVG({ mood: 'pencuri', label: 'Oyen jaga kedai' })}</div>
+      <div class="kedai-hero-pic duo-mini">
+        <img src="./characters/oyen.webp" width="560" height="680" alt="Oyen jaga kedai" />
+        <img src="./characters/abu.webp" width="540" height="568" alt="Abu tolong jaga kedai" />
+      </div>
       <div>
         <h1>Kedai Oyen 🛍️</h1>
         <p>Barang pilihan Oyen. Semua dah dia "test" sendiri. Sebahagiannya dia curi.</p>
         <nav class="jump" aria-label="Bahagian kedai">
-          <a href="#belanja">🐟 Belanja Oyen</a>
+          <a href="#belanja">🐟 Belanja Kami</a>
           <a href="#barang">🛒 Barang Wajib</a>
           <a href="#merch">👕 Merch</a>
         </nav>
@@ -37,10 +39,10 @@ function belanja() {
   return `
     <section class="belanja card" id="belanja" aria-labelledby="belanja-title">
       <div class="belanja-head">
-        <div class="belanja-pic">${mascotSVG({ mood: 'manja', label: '' })}</div>
+        <div class="belanja-pic"><img src="./characters/abu.webp" width="540" height="568" alt="" /></div>
         <div>
-          <h2 id="belanja-title">Belanja Oyen Ikan 🐟</h2>
-          <p>Suka Oyen? Sokongan kau bantu Oyen terus hidup: bayar domain, buat game baru dan video Oyen yang lagi mengarut.</p>
+          <h2 id="belanja-title">Belanja Kami Ikan 🐟</h2>
+          <p>Abu tengah pandang kau dengan mata bulat dia. Sokongan kau bantu Oyen &amp; Abu terus hidup: bayar domain, buat game baru dan komik yang lagi mengarut.</p>
         </div>
       </div>
 
@@ -131,26 +133,26 @@ function barang() {
     </section>`;
 }
 
-// Original t-shirt and sticker mockups with the mascot inside.
+// T-shirt and sticker mockups using the official character art.
 function merch() {
-  const inner = (mood) => mascotSVG({ mood, label: '' }).replace('<svg ', '<svg x="62" y="70" width="96" height="110" ');
   const tee = `<svg viewBox="0 0 220 220" class="tee" aria-hidden="true">
     <path d="M70 20 L40 32 L8 72 L38 94 L50 80 L50 206 L170 206 L170 80 L182 94 L212 72 L180 32 L150 20 Q140 44 110 44 Q80 44 70 20 Z"
       fill="#3B2314" stroke="#3B2314" stroke-width="5" stroke-linejoin="round"/>
-    ${inner('samseng')}
+    <image href="./characters/oyen.webp" x="66" y="62" width="88" height="107" />
     <text x="110" y="196" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="10.5" fill="#FFD23F">SAMSENG KAWASAN</text>
   </svg>`;
   const sticker = `<svg viewBox="0 0 220 220" class="sticker" aria-hidden="true">
     <circle cx="110" cy="110" r="96" fill="#fff" stroke="#3B2314" stroke-width="5"/>
     <circle cx="110" cy="110" r="84" fill="#FF8A1F"/>
-    ${mascotSVG({ mood: 'otak', label: '' }).replace('<svg ', '<svg x="50" y="34" width="120" height="138" ')}
-    <text x="110" y="190" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="15" fill="#3B2314">1 SEL OTAK</text>
+    <circle cx="110" cy="110" r="84" fill="#E7E5EE"/>
+    <image href="./characters/abu.webp" x="52" y="40" width="116" height="122" />
+    <text x="110" y="186" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" font-size="15" fill="#3B2314">COMEL RASMI</text>
   </svg>`;
   return `
     <section class="merch card" id="merch" aria-labelledby="merch-title">
       <span class="soon-badge">AKAN DATANG</span>
-      <h2 id="merch-title">Merch Oyen 👕</h2>
-      <p>T-shirt "Samseng Kawasan", sticker "1 Sel Otak", tote bag dan banyak lagi. Oyen tengah berunding dengan kilang (dia ugut).</p>
+      <h2 id="merch-title">Merch Oyen &amp; Abu 👕</h2>
+      <p>T-shirt Oyen "Samseng Kawasan", sticker Abu "Comel Rasmi", tote bag dan banyak lagi. Oyen tengah berunding dengan kilang (dia ugut). Abu cuma senyum.</p>
       <div class="merch-row">${tee}${sticker}</div>
     </section>`;
 }

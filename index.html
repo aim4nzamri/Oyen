@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#ff8a1f" />
-    <title>Oyen — Kawasan Kucing Oren</title>
-    <meta name="description" content="Selamat datang ke kawasan Oyen. Jangan kacau. Kuiz, game dan Kedai Oyen untuk semua kucing oren Malaysia." />
+    <title>Oyen &amp; Abu — Jangan Kacau Kawasan Kami</title>
+    <meta name="description" content="Oyen si samseng dalam rumah, Abu si comel luar rumah. Kuiz, game, komik dan kedai untuk peminat kucing Malaysia." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
@@ -13,11 +13,21 @@
   </head>
   <body data-page="home">
     <main id="app">
-      <section class="hero">
-        <div class="speech" id="speech">Woi, mana makanan aku?</div>
-        <div id="hero-mascot"></div>
-        <h1>Selamat datang ke kawasan <span class="accent">Oyen</span>.</h1>
-        <p class="lead">Jangan kacau. Oyen tengah tidur. Kalau nak masuk, bawak ikan goreng.</p>
+      <section class="hero hero-duo">
+        <h1 class="duo-title"><span class="t-oyen">Oyen</span> <span class="amp">&amp;</span> <span class="t-abu">Abu</span></h1>
+        <p class="lead">Oyen jaga dalam rumah. Abu jaga luar rumah. Kau? Jangan kacau.</p>
+
+        <div class="duo">
+          <button class="duo-cat duo-oyen" id="poke-oyen" type="button" aria-label="Cucuk Oyen">
+            <span class="speech speech-oyen" id="speech-oyen" aria-live="polite">Woi, mana makanan aku?</span>
+            <img src="./characters/oyen.webp" width="560" height="680" alt="Oyen, kucing oren gemuk dengan muka tak puas hati" />
+          </button>
+          <button class="duo-cat duo-abu" id="poke-abu" type="button" aria-label="Usap Abu">
+            <span class="speech speech-abu" id="speech-abu" aria-live="polite">Meow~ 🥺</span>
+            <img src="./characters/abu.webp" width="540" height="568" alt="Abu, kucing kelabu comel bermata bulat" />
+          </button>
+        </div>
+        <p class="tap-hint">👆 Tekan Oyen atau Abu</p>
       </section>
 
       <section class="feature-grid" aria-label="Aktiviti">
@@ -31,16 +41,47 @@
         </a>
         <a class="feature card" href="./kedai.html">
           <span class="feature-emoji" aria-hidden="true">🛍️</span>
-          <span><strong>Kedai Oyen</strong><small>Barang pilihan Oyen &amp; belanja dia ikan.</small></span>
+          <span><strong>Kedai Oyen</strong><small>Barang pilihan Oyen &amp; belanja diorang ikan.</small></span>
         </a>
       </section>
 
+      <section class="meet" aria-labelledby="meet-title">
+        <h2 id="meet-title">Kenali Geng Ni</h2>
+        <div class="meet-grid">
+          <article class="meet-card meet-oyen">
+            <img src="./characters/oyen.webp" width="560" height="680" alt="" loading="lazy" />
+            <div>
+              <h3>Oyen <span class="tag">Dalam rumah</span></h3>
+              <p class="quote">“Woi, mana makanan aku?”</p>
+              <ul class="traits">
+                <li><b>Kerja:</b> Raja sofa, jaga dapur, tidur 20 jam</li>
+                <li><b>Perangai:</b> Samseng (dalam rumah je), tamak, satu sel otak</li>
+                <li><b>Takut:</b> Dunia luar. Dua langkah dari pintu, terus patah balik.</li>
+              </ul>
+            </div>
+          </article>
+          <article class="meet-card meet-abu">
+            <img src="./characters/abu.webp" width="540" height="568" alt="" loading="lazy" />
+            <div>
+              <h3>Abu <span class="tag">Luar rumah</span></h3>
+              <p class="quote">“Meow~ 🥺”</p>
+              <ul class="traits">
+                <li><b>Kerja:</b> Jaga laman, pagar dan bumbung</li>
+                <li><b>Perangai:</b> Manja, comel, ceria. Semua orang cair.</li>
+                <li><b>Rahsia:</b> Dapat makan dari 3 rumah jiran. Oyen tak tahu.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section class="facts card">
-        <h2>Fakta Saintifik* Tentang Oyen</h2>
+        <h2>Fakta Saintifik* Tentang Oyen &amp; Abu</h2>
         <ul>
-          <li>Semua kucing oren berkongsi <b>satu sel otak</b>. Hari ni giliran Oyen kat Kedah.</li>
+          <li>Semua kucing oren berkongsi <b>satu sel otak</b>. Hari ni giliran Oyen.</li>
           <li>Oyen tak curi ikan. Dia cuma "pinjam tanpa tarikh pulang".</li>
-          <li>Kucing jiran tu bukan musuh. Dia "kawan yang belum kena tibai".</li>
+          <li>Abu tak pernah minta makan. Dia cuma <b>pandang</b>. Lepas tu orang bagi.</li>
+          <li>Oyen kata dia tak sayang Abu. Tapi dia tunggu Abu balik setiap malam kat tingkap.</li>
         </ul>
         <p><small>*Tak saintifik langsung.</small></p>
       </section>

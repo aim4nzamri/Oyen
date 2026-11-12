@@ -1,65 +1,75 @@
-// Generates favicon / app icons / Open Graph image from the SVG mascot.
+// Generates favicon / app icons / Open Graph image from the official
+// character art in public/characters/.
 // Usage: node scripts/generate-assets.mjs
-// Needs Playwright with Chromium available (npm i -D playwright && npx playwright install chromium).
-// Output goes to public/ and is committed, so this only needs re-running when the mascot changes.
-import { writeFileSync } from 'node:fs';
+// Needs Playwright with Chromium (npm i -D playwright && npx playwright install chromium).
+// Output goes to public/ and is committed, so this only needs re-running when the art changes.
+import { readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { chromium } from 'playwright';
-import { mascotSVG } from '../src/js/mascot.js';
 
-const out = (f) => resolve(import.meta.dirname, '../public', f);
+const pub = (f) => resolve(import.meta.dirname, '../public', f);
+const dataUrl = (f) => `data:image/webp;base64,${readFileSync(pub(f)).toString('base64')}`;
+const OYEN = dataUrl('characters/oyen.webp');
+const ABU = dataUrl('characters/abu.webp');
+const OYEN_HEAD = dataUrl('characters/oyen-head.webp');
 const FONT = `<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&display=swap" rel="stylesheet">`;
-
-// 1) SVG favicon (scales perfectly in modern browsers)
-writeFileSync(out('favicon.svg'), mascotSVG({ headOnly: true, label: 'Oyen' }));
 
 const browser = await chromium.launch();
 const page = await browser.newPage();
 
-async function shot(html, w, h, file) {
+async function shot(html, w, h, file, transparent = false) {
   await page.setViewportSize({ width: w, height: h });
   await page.setContent(`<!doctype html><html><head>${FONT}<style>
-    *{margin:0;box-sizing:border-box} body{width:${w}px;height:${h}px;overflow:hidden;font-family:'Baloo 2',sans-serif;color:#3B2314}
+    *{margin:0;box-sizing:border-box} body{width:${w}px;height:${h}px;overflow:hidden;font-family:'Baloo 2',sans-serif;color:#3B2314;background:transparent}
   </style></head><body>${html}</body></html>`);
   await page.evaluate(() => document.fonts.ready);
-  await page.screenshot({ path: out(file), omitBackground: file.startsWith('favicon') });
+  await page.waitForTimeout(100);
+  await page.screenshot({ path: pub(file), omitBackground: transparent });
   console.log('wrote', file);
 }
 
-// 2) PNG icons
-const icon = (pad) => `<div style="width:100%;height:100%;display:grid;place-items:center;background:#FF8A1F;
-  background-image:radial-gradient(#FFC285 2px,transparent 2px);background-size:16px 16px">
-  <div style="width:${100 - pad * 2}%;height:${100 - pad * 2}%;border-radius:50%;background:#FFF4E0;border:6px solid #3B2314;display:grid;place-items:center">
-  <div style="width:84%;margin-top:-4%">${mascotSVG({ headOnly: true })}</div></div></div>`;
-await shot(`<div style="width:32px;height:32px">${mascotSVG({ headOnly: true })}</div>`, 32, 32, 'favicon-32.png');
-await shot(icon(8), 180, 180, 'apple-touch-icon.png');
-await shot(icon(8), 512, 512, 'icon-512.png');
+// Round icon: Oyen's head in a cream circle on orange
+const icon = (size, ring) => `<div style="width:${size}px;height:${size}px;display:grid;place-items:center;background:#FF8A1F">
+  <div style="width:${size - ring * 2}px;height:${size - ring * 2}px;border-radius:50%;overflow:hidden;background:#FFF4E0;
+    border:${Math.max(2, size / 30)}px solid #3B2314;display:grid;place-items:end center">
+    <img src="${OYEN_HEAD}" style="width:96%;margin-bottom:-6%">
+  </div></div>`;
 
-// 3) Open Graph image for WhatsApp / social previews (1200x630)
 await shot(
-  `<div style="width:1200px;height:630px;background:#FF8A1F;position:relative;
+  `<div style="width:64px;height:64px;border-radius:50%;overflow:hidden;background:#FF8A1F;display:grid;place-items:end center">
+     <img src="${OYEN_HEAD}" style="width:100%;margin-bottom:-4%"></div>`,
+  64, 64, 'favicon-64.png', true,
+);
+await shot(icon(180, 10), 180, 180, 'apple-touch-icon.png');
+await shot(icon(512, 26), 512, 512, 'icon-512.png');
+
+// Open Graph image for WhatsApp / social previews (1200x630)
+await shot(
+  `<div style="width:1200px;height:630px;background:#FF8A1F;position:relative;overflow:hidden;
     background-image:radial-gradient(rgba(255,255,255,.22) 4px,transparent 4px);background-size:44px 44px">
-    <div style="position:absolute;left:60px;top:60px;width:470px;height:510px;background:#FFF4E0;border:8px solid #3B2314;
-      border-radius:48px;box-shadow:14px 14px 0 #3B2314;display:grid;place-items:center">
-      <div style="width:400px">${mascotSVG({ mood: 'samseng' })}</div>
-    </div>
-    <div style="position:absolute;left:590px;top:70px;right:50px">
-      <div style="display:inline-block;background:#3B2314;color:#FFD23F;font-weight:800;font-size:30px;padding:4px 24px;border-radius:999px;transform:rotate(-2deg)">⚠️ KAWASAN OYEN</div>
-      <div style="font-weight:800;font-size:150px;line-height:1;margin-top:16px;text-shadow:6px 6px 0 #FFC285">Oyen</div>
-      <div style="font-weight:800;font-size:44px;line-height:1.15;margin-top:6px">Jangan kacau.<br/>Bawak ikan goreng.</div>
-      <div style="display:flex;gap:12px;margin-top:34px;flex-wrap:wrap">
-        ${['❓ Kuiz', '🐟 Game', '🛍️ Kedai Oyen']
+    <div style="position:absolute;left:40px;top:40px;width:600px;height:550px;background:#FFF4E0;border:8px solid #3B2314;
+      border-radius:48px;box-shadow:14px 14px 0 #3B2314"></div>
+    <img src="${OYEN}" style="position:absolute;left:70px;bottom:52px;width:330px">
+    <img src="${ABU}" style="position:absolute;left:372px;bottom:52px;width:250px">
+    <div style="position:absolute;left:690px;top:70px;right:40px">
+      <div style="display:inline-block;background:#3B2314;color:#FFD23F;font-weight:800;font-size:30px;padding:4px 24px;border-radius:999px;transform:rotate(-2deg)">⚠️ KAWASAN KAMI</div>
+      <div style="font-weight:800;font-size:112px;line-height:1;margin-top:18px">
+        <span style="color:#E86A00;text-shadow:6px 6px 0 #3B2314">Oyen</span><br/>
+        <span style="font-size:70px">&amp;</span>
+        <span style="color:#8E8C94;text-shadow:6px 6px 0 #3B2314">Abu</span>
+      </div>
+      <div style="font-weight:800;font-size:36px;line-height:1.2;margin-top:18px">Satu samseng dalam rumah.<br/>Satu comel luar rumah.</div>
+      <div style="display:flex;gap:10px;margin-top:26px;flex-wrap:wrap">
+        ${['❓ Kuiz', '🐟 Game', '🛍️ Kedai']
           .map(
             (t) =>
-              `<span style="background:#FFF4E0;border:5px solid #3B2314;border-radius:18px;box-shadow:5px 5px 0 #3B2314;padding:4px 18px;font-weight:800;font-size:32px">${t}</span>`,
+              `<span style="background:#FFF4E0;border:5px solid #3B2314;border-radius:18px;box-shadow:5px 5px 0 #3B2314;padding:2px 16px;font-weight:800;font-size:28px">${t}</span>`,
           )
           .join('')}
       </div>
     </div>
   </div>`,
-  1200,
-  630,
-  'og-image.png',
+  1200, 630, 'og-image.png',
 );
 
 await browser.close();

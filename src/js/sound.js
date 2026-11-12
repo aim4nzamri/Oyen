@@ -110,6 +110,11 @@ const SFX = {
   },
   result: () =>
     [392, 523, 659, 784].forEach((f, i) => tone({ freq: f, dur: 0.18, type: 'triangle', vol: 0.11, delay: i * 0.11 })),
+  // Abu's small, high "mew"
+  mew: () => {
+    tone({ freq: 900, to: 1300, dur: 0.12, type: 'triangle', vol: 0.12 });
+    tone({ freq: 1300, to: 950, dur: 0.18, type: 'triangle', vol: 0.1, delay: 0.1 });
+  },
   // A cartoon "meow": a nasal sawtooth gliding up then down.
   meow: () => {
     const a = ac();

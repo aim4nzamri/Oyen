@@ -2593,3 +2593,94 @@ h3 {
 .brand:hover .brand-logo-img {
   animation: wiggle 0.5s ease;
 }
+
+/* ---------- logo with Oyen, Abu and Aiman face stickers ---------- */
+.logo-cluster {
+  width: min(340px, 82vw);
+  margin: 8px auto 10px;
+}
+
+.logo-cluster .duo-logo {
+  margin: -6px 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+.logo-cluster .duo-logo img {
+  width: 100%;
+}
+
+.face-row {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 6%;
+  position: relative;
+  z-index: 2;
+}
+
+.face-badge {
+  flex: none;
+  width: 25%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3.5px solid var(--brown);
+  outline: 4px solid #fff; /* white sticker border like the logo */
+  display: grid;
+  place-items: end center;
+  transform: rotate(var(--tilt, 0deg));
+  animation: badgeIn 0.55s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+
+.face-badge img {
+  width: 106%;
+  height: auto;
+  margin-bottom: -8%;
+}
+
+.badge-oyen {
+  background: #ffe1bd;
+  --tilt: -8deg;
+  animation-delay: 0.2s;
+}
+
+.badge-aiman {
+  width: 29%;
+  margin-bottom: 14px;
+  background: #cdeaff;
+  --tilt: 4deg;
+  animation-delay: 0.35s;
+}
+
+.badge-aiman img {
+  width: 94%;
+  margin-bottom: -12%;
+}
+
+.badge-abu {
+  background: #e7e5ee;
+  --tilt: 8deg;
+  animation-delay: 0.5s;
+}
+
+@keyframes badgeIn {
+  from {
+    transform: scale(0) rotate(0deg);
+  }
+  to {
+    transform: scale(1) rotate(var(--tilt, 0deg));
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .face-badge img {
+    animation: bob 3s ease-in-out infinite;
+  }
+  .badge-aiman img {
+    animation-delay: -1s;
+  }
+  .badge-abu img {
+    animation-delay: -2s;
+  }
+}

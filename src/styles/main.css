@@ -2827,3 +2827,103 @@ h3 {
     scale: 0.4;
   }
 }
+
+/* =====================================================================
+   SMOOTH BUBBLE TAILS
+   Tails are drawn as two stacked CSS triangles (ink outline + fill) so the
+   edges are crisp and the join with the bubble hides the bubble border.
+   Thought bubbles (Oyen & Abu "cakap dalam hati") use two small circles.
+   ===================================================================== */
+
+/* reset the old rotated-square tails */
+.say::after,
+.say::before,
+.duo-cat .speech::after,
+.duo-cat .speech::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: none !important;
+  border: 0 solid transparent;
+  transform: none;
+  border-radius: 0;
+}
+
+/* ---- speech tail: Aiman + hero bubbles ---- */
+.say-aiman::before,
+.duo-cat .speech::before {
+  left: 50%;
+  top: calc(100% + 1px);
+  translate: -50% 0;
+  border-left-width: 11px;
+  border-right-width: 11px;
+  border-top: 15px solid var(--brown);
+}
+
+.say-aiman::after,
+.duo-cat .speech::after {
+  left: 50%;
+  top: calc(100% - 2.5px);
+  translate: -50% 0;
+  border-left-width: 6.5px;
+  border-right-width: 6.5px;
+  border-top: 12px solid var(--bubble, #fff);
+}
+
+.say-aiman {
+  --bubble: #fff6c7;
+}
+
+.speech-oyen {
+  --bubble: var(--white);
+}
+
+.speech-abu {
+  --bubble: var(--abu-soft);
+}
+
+/* ---- thought bubbles: Oyen & Abu ---- */
+.say-oyen,
+.say-abu {
+  border-radius: 999px;
+  padding: 7px 12px;
+}
+
+.say-oyen::before,
+.say-abu::before,
+.say-oyen::after,
+.say-abu::after {
+  border-radius: 50%;
+  background: #fff !important;
+  border: 3px solid var(--brown);
+}
+
+/* big dot, then small dot, leading down to the head */
+.say-oyen::before,
+.say-abu::before {
+  width: 14px;
+  height: 14px;
+  top: calc(100% + 4px);
+}
+
+.say-oyen::after,
+.say-abu::after {
+  width: 8px;
+  height: 8px;
+  top: calc(100% + 20px);
+}
+
+.say-oyen::before {
+  left: 62%;
+}
+.say-oyen::after {
+  left: 70%;
+}
+
+.say-abu::before {
+  left: 30%;
+}
+.say-abu::after {
+  left: 24%;
+}

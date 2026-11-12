@@ -1,5 +1,4 @@
 // Small SVG sprites for the game, turned into <img> objects for canvas drawing.
-import { mascotSVG } from './mascot.js';
 
 const LINE = '#3B2314';
 
@@ -33,11 +32,21 @@ export function loadImage(svg) {
   });
 }
 
+/** Load an image file (same origin) for canvas drawing. */
+export function loadUrl(url) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = url;
+  });
+}
+
 export async function loadGameSprites() {
   const [oyen, oyenHit, oyenEat, fish, goldFish, selipar] = await Promise.all([
-    loadImage(mascotSVG({ mood: 'smug' })),
-    loadImage(mascotSVG({ mood: 'drama' })),
-    loadImage(mascotSVG({ mood: 'manja' })),
+    loadUrl('./characters/oyen_pose_duduk.webp'),
+    loadUrl('./characters/oyen_face_terkejut.webp'),
+    loadUrl('./characters/oyen_face_happy.webp'),
     loadImage(fishSVG(false)),
     loadImage(fishSVG(true)),
     loadImage(seliparSVG),

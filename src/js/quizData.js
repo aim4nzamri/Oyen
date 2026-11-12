@@ -5,6 +5,7 @@ export const RESULTS = {
   samseng: {
     title: 'Oyen Samseng',
     mood: 'samseng',
+    image: 'characters/oyen_face_marah.webp',
     quote: '"Ini kawasan aku. Kau siapa?"',
     desc:
       'Ketua kawasan taman perumahan. Semua kucing jiran bayar "yuran perlindungan" dalam bentuk ikan bilis. Telinga koyak sikit, tapi itu tanda pengalaman. Jalan senget sebab dia nak, bukan sebab sakit.',
@@ -14,6 +15,7 @@ export const RESULTS = {
   manja: {
     title: 'Oyen Manja',
     mood: 'manja',
+    image: 'characters/oyen_face_happy.webp',
     quote: '"Usap aku. Sekarang. Okay cukup. GIGIT."',
     desc:
       'Nampak comel, gesel kaki, golek-golek minta usap perut. Tapi ingat: perut tu perangkap. Tiga kali usap boleh, kali keempat kau kena gigit manja. Sayang kau, tapi lebih sayang tuna.',
@@ -23,6 +25,7 @@ export const RESULTS = {
   pencuri: {
     title: 'Oyen Pencuri Ikan',
     mood: 'pencuri',
+    image: 'characters/oyen_pose_gremlin.webp',
     quote: '"Ikan apa? Aku tak nampak pun ikan."',
     desc:
       'Ninja dapur yang paling dikehendaki. Mak pusing belakang 0.5 saat, ikan goreng hilang. Bukti? Tiada. Mulut berminyak? Kebetulan. Pakar strategi tahap Sun Tzu, tapi cuma untuk satu benda: makanan.',
@@ -32,6 +35,7 @@ export const RESULTS = {
   tidur: {
     title: 'Oyen Tidur 20 Jam',
     mood: 'tidur',
+    image: 'characters/oyen_pose_terbongkang.webp',
     quote: '"Jangan kacau, aku tengah recharge."',
     desc:
       'Atlet tidur bertaraf Olimpik. Boleh tidur atas lantai, dalam kotak, atas laptop, dalam sinki. Bangun cuma untuk makan, lepas tu tidur balik sebab penat makan. Hidup dia lagi tenang dari hidup kau.',
@@ -41,6 +45,7 @@ export const RESULTS = {
   drama: {
     title: 'Oyen Drama Queen',
     mood: 'drama',
+    image: 'characters/oyen_face_terkejut.webp',
     quote: '"MIAAAAAW!!! (dia ok je sebenarnya)"',
     desc:
       'Pelakon utama drama Melayu pukul 7. Mangkuk separuh kosong? Tragedi. Pintu tertutup? Penderaan. Terpijak ekor sikit? Merajuk tiga hari, lepas tu buat-buat tak kenal kau. Layak dapat Anugerah Skrin.',
@@ -50,6 +55,7 @@ export const RESULTS = {
   otak: {
     title: 'Oyen Satu Sel Otak',
     mood: 'otak',
+    image: 'characters/oyen_pose_liquid.webp',
     quote: '"..." *tenung dinding kosong 40 minit*',
     desc:
       'Hari ni giliran dia pegang sel otak kongsi semua kucing oren. Malangnya dia tertinggal kat mana entah. Lari langgar dinding, kejar ekor sendiri, masuk kotak yang terlalu kecil. Tapi dia bahagia, dan itu yang penting.',

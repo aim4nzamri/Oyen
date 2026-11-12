@@ -1,6 +1,5 @@
 import { mountNav, confetti } from './nav.js';
 import { play } from './sound.js';
-import { mascotSVG } from './mascot.js';
 import { QUESTIONS, RESULTS } from './quizData.js';
 import { drawResultCard } from './card.js';
 
@@ -101,7 +100,7 @@ function renderResult(r) {
       <p class="result-kicker">Keputusan rasmi makmal Oyen:</p>
       <div class="result-card" id="result-card">
         <div class="result-inner">
-          ${mascotSVG({ mood: r.mood, label: r.title })}
+          <img class="result-pic" src="./${r.image}" alt="${esc(r.title)}" />
           <h1 class="result-title">${esc(r.title)}</h1>
           <p class="result-quote">${esc(r.quote)}</p>
           <div class="power">⚡ Power Level: ${esc(r.power)}</div>

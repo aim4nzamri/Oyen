@@ -2596,12 +2596,12 @@ h3 {
 
 /* ---------- logo with Oyen, Abu and Aiman face stickers ---------- */
 .logo-cluster {
-  width: min(340px, 82vw);
-  margin: 8px auto 10px;
+  width: min(350px, 88vw);
+  margin: 4px auto 10px;
 }
 
 .logo-cluster .duo-logo {
-  margin: -6px 0 0;
+  margin: -4px 0 0;
   position: relative;
   z-index: 1;
 }
@@ -2614,53 +2614,94 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  gap: 6%;
+  gap: 7%;
+  padding-top: calc(clamp(74px, 21vw, 92px) * 1.05); /* room for heads popping out + speech bubbles */
   position: relative;
   z-index: 2;
 }
 
+/* Each badge: a round sticker frame with the character "breaking out" of it */
 .face-badge {
+  --b: clamp(74px, 21vw, 92px); /* circle size */
+  position: relative;
   flex: none;
-  width: 25%;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 3.5px solid var(--brown);
-  outline: 4px solid #fff; /* white sticker border like the logo */
-  display: grid;
-  place-items: end center;
+  width: var(--b);
+  height: var(--b);
   transform: rotate(var(--tilt, 0deg));
   animation: badgeIn 0.55s cubic-bezier(0.2, 1.6, 0.4, 1) both;
 }
 
-.face-badge img {
-  width: 106%;
+.face-badge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 3.5px solid var(--brown);
+  outline: 4px solid #fff;
+}
+
+/* The picture box is taller and wider than the circle. The mask shows
+   everything above the circle's centre line, plus the circle itself,
+   so the head/ears pop out of the top while the body stays inside. */
+.face-badge .pop {
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  width: calc(var(--b) * 1.5);
+  height: calc(var(--b) * 1.7);
+  transform: translateX(-50%);
+  -webkit-mask-image:
+    linear-gradient(#000 0 0),
+    radial-gradient(circle at 50% calc(100% - var(--b) / 2 + 3px), #000 calc(var(--b) / 2 - 4px), transparent calc(var(--b) / 2 - 3px));
+  -webkit-mask-size:
+    100% calc(100% - var(--b) / 2),
+    100% 100%;
+  -webkit-mask-position:
+    top,
+    0 0;
+  -webkit-mask-repeat: no-repeat;
+  mask-image:
+    linear-gradient(#000 0 0),
+    radial-gradient(circle at 50% calc(100% - var(--b) / 2 + 3px), #000 calc(var(--b) / 2 - 4px), transparent calc(var(--b) / 2 - 3px));
+  mask-size:
+    100% calc(100% - var(--b) / 2),
+    100% 100%;
+  mask-position:
+    top,
+    0 0;
+  mask-repeat: no-repeat;
+}
+
+.face-badge .pop img {
+  position: absolute;
+  left: 50%;
+  bottom: calc(var(--b) * -0.1);
+  width: var(--w, 120%);
   height: auto;
-  margin-bottom: -8%;
+  transform: translateX(-50%);
+  transform-origin: 50% 100%;
 }
 
 .badge-oyen {
-  background: #ffe1bd;
-  --tilt: -8deg;
+  --bg: #ffe1bd;
+  --tilt: -7deg;
+  --w: 74%;
   animation-delay: 0.2s;
 }
 
 .badge-aiman {
-  width: 29%;
-  margin-bottom: 14px;
-  background: #cdeaff;
+  --bg: #cdeaff;
   --tilt: 4deg;
+  --w: 84%;
+  margin-bottom: 16px;
   animation-delay: 0.35s;
 }
 
-.badge-aiman img {
-  width: 94%;
-  margin-bottom: -12%;
-}
-
 .badge-abu {
-  background: #e7e5ee;
-  --tilt: 8deg;
+  --bg: #e7e5ee;
+  --tilt: 7deg;
+  --w: 74%;
   animation-delay: 0.5s;
 }
 
@@ -2674,13 +2715,111 @@ h3 {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .face-badge img {
-    animation: bob 3s ease-in-out infinite;
+  .face-badge .pop img {
+    animation: popBob 2.6s ease-in-out infinite;
   }
-  .badge-aiman img {
-    animation-delay: -1s;
+  .badge-aiman .pop img {
+    animation: shake 0.5s ease-in-out infinite;
   }
-  .badge-abu img {
-    animation-delay: -2s;
+  .badge-abu .pop img {
+    animation-delay: -1.3s;
+  }
+}
+
+@keyframes popBob {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-4px);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-52%) rotate(-2deg);
+  }
+  75% {
+    transform: translateX(-48%) rotate(2deg);
+  }
+}
+
+/* speech bubbles */
+.say {
+  position: absolute;
+  z-index: 3;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.82rem;
+  line-height: 1;
+  padding: 6px 10px;
+  background: #fff;
+  color: var(--brown);
+  border: 3px solid var(--brown);
+  border-radius: 999px;
+  transform: rotate(calc(var(--tilt, 0deg) * -1));
+  animation: sayIn 0.4s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+
+.say::after {
+  content: '';
+  position: absolute;
+  bottom: -9px;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  border-right: 3px solid var(--brown);
+  border-bottom: 3px solid var(--brown);
+  transform: rotate(45deg);
+}
+
+.say-oyen {
+  bottom: calc(100% + var(--b) * 0.42);
+  left: -18px;
+  animation-delay: 0.7s;
+}
+
+.say-oyen::after {
+  left: 60%;
+}
+
+.say-abu {
+  bottom: calc(100% + var(--b) * 0.42);
+  right: -6px;
+  animation-delay: 0.95s;
+}
+
+.say-abu::after {
+  left: 35%;
+}
+
+/* Aiman shouts: jagged red bubble */
+.say-aiman {
+  bottom: calc(100% + var(--b) * 0.6);
+  left: 50%;
+  translate: -50% 0;
+  font-size: 0.95rem;
+  color: #e53945;
+  border-radius: 14px;
+  padding: 7px 12px;
+  background: #fff6c7;
+  animation-delay: 0.8s;
+}
+
+.say-aiman::after {
+  left: calc(50% - 6px);
+  background: #fff6c7;
+}
+
+@keyframes sayIn {
+  from {
+    opacity: 0;
+    scale: 0.4;
   }
 }

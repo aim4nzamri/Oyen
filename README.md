@@ -11,6 +11,7 @@ The site is in Bahasa Melayu / Manglish. It's a static site built with **Vite + 
 | Laman Utama (Home) | `index.html` | ✅ |
 | Kuiz: "Oyen Kau Jenis Apa?" | `quiz.html` | ✅ |
 | Game: "Selamatkan Ikan Goreng" | `game.html` | ✅ |
+| Rumah Oyen & Abu (cozy game, prototype) | `rumah.html` | 🧪 |
 | Kedai Oyen (shop + Belanja Oyen) | `kedai.html` | ✅ |
 | Hall of Fame Oyen | `reserved/hall-of-fame/` | ⏸️ Parked, not published |
 
@@ -118,3 +119,23 @@ The PNGs in `public/` are generated from the SVG mascot and committed. You only 
 npm i -D playwright && npx playwright install chromium
 node scripts/generate-assets.mjs
 ```
+
+## Rumah Oyen & Abu (cozy game prototype)
+
+`rumah.html` + `src/js/rumah.js`. A Neko Atsume-style idle game:
+
+- Place items in 4 areas: Ruang Tamu, Dapur, Bilik Aiman (indoor, for Oyen) and Laman (outdoor, for Abu).
+- The cats visit on their own and use the items with poses from `public/characters/`.
+- Tap a visiting cat to photograph it. Photos earn 🐟 and fill the album.
+- Oyen empties food bowls. If a bowl is empty, he shows up angry until you refill it.
+- Abu leaves gifts (daun, bunga, ikan bilis).
+- Time keeps running while you're away. When you come back, a "Semasa kau tiada..." summary shows what happened.
+- Progress is saved in `localStorage` only, so it is per device and per browser.
+
+Content and tuning are in `src/js/rumahData.js`:
+- areas and item spot positions
+- items and prices
+- cat poses and lines
+- timings
+
+Item art is placeholder SVG in `src/js/rumahArt.js`. Backgrounds come from `art/locations/` (web copies in `public/locations/`).

@@ -4,6 +4,7 @@ import { SOCIAL } from './siteConfig.js';
 const LINKS = [
   { id: 'home', href: './index.html', label: 'Laman Utama', short: 'Utama', icon: '🏠' },
   { id: 'quiz', href: './quiz.html', label: 'Kuiz', short: 'Kuiz', icon: '❓' },
+  { id: 'rumah', href: './rumah.html', label: 'Rumah', short: 'Rumah', icon: '🛋️' },
   { id: 'game', href: './game.html', label: 'Game', short: 'Game', icon: '🐟' },
   { id: 'kedai', href: './kedai.html', label: 'Kedai Oyen', short: 'Kedai', icon: '🛍️' },
 ];

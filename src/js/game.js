@@ -1,5 +1,4 @@
 import { mountNav } from './nav.js';
-import { mascotSVG } from './mascot.js';
 import { loadGameSprites } from './sprites.js';
 import { play } from './sound.js';
 import { confetti } from './nav.js';
@@ -333,8 +332,9 @@ function draw() {
   if (!blink) {
     const img = hurtFor > 0 ? sprites.oyenHit : eatFor > 0 ? sprites.oyenEat : sprites.oyen;
     const squash = eatFor > 0 ? 1 + Math.sin((eatFor / 0.35) * Math.PI) * 0.06 : 1;
-    const w = PLAYER_W * squash;
-    const h = PLAYER_H / squash;
+    // keep each picture's own shape, fitted to the player's height
+    const h = (PLAYER_H * 1.05) / squash;
+    const w = Math.min(h * (img.width / img.height), PLAYER_W * 1.35) * squash;
     ctx.drawImage(img, player.x - w / 2, FLOOR - h + 6, w, h);
   }
 
@@ -413,7 +413,7 @@ function gameOver() {
   }
   const line = [...GAME_OVER_LINES].reverse().find((l) => score >= l.min).text;
   showOverlay(`
-    <div class="overlay-mascot">${mascotSVG({ mood: score >= 30 ? 'samseng' : 'drama' })}</div>
+    <div class="overlay-mascot"><img src="./characters/${score >= 30 ? 'oyen_face_happy' : 'oyen_face_marah'}.webp" alt="" /></div>
     <h2>Game Over!</h2>
     <p class="final-score">${score} ikan goreng</p>
     ${isRecord && score > 0 ? '<p class="record">🏆 REKOD BARU!</p>' : `<p>Rekod kau: <b>${best}</b></p>`}
@@ -505,7 +505,7 @@ window.addEventListener('resize', resize);
   draw();
   state = 'ready';
   showOverlay(`
-    <div class="overlay-mascot">${mascotSVG({ mood: 'pencuri' })}</div>
+    <div class="overlay-mascot"><img src="./characters/oyen_pose_gremlin.webp" alt="" /></div>
     <h2>Selamatkan Ikan Goreng!</h2>
     <p>Mak tengah goreng ikan. Tangkap seberapa banyak boleh, tapi <b>elak selipar mak</b>!</p>
     <ul class="howto">

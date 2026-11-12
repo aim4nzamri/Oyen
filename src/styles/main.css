@@ -2548,3 +2548,19 @@ h3 {
 .btn:active {
   transform: scale(0.97);
 }
+
+/* character art in quiz results and game overlays */
+.result-card .result-pic {
+  display: block;
+  width: min(230px, 62vw);
+  height: 210px;
+  object-fit: contain;
+  margin: 4px auto 0;
+  animation: bob 3s ease-in-out infinite;
+}
+
+.overlay-mascot img {
+  width: 120px;
+  height: 110px;
+  object-fit: contain;
+}

@@ -1,6 +1,5 @@
 // Draws a shareable result card onto a canvas (no external libraries).
-import { mascotSVG } from './mascot.js';
-import { loadImage } from './sprites.js';
+import { loadUrl } from './sprites.js';
 
 const W = 1080;
 const H = 1350;
@@ -18,10 +17,12 @@ function roundRect(ctx, x, y, w, h, r) {
   ctx.closePath();
 }
 
-function boxed(ctx, x, y, w, h, r, fill, shadow = 12) {
-  ctx.fillStyle = BROWN;
-  roundRect(ctx, x + shadow, y + shadow, w, h, r);
-  ctx.fill();
+function boxed(ctx, x, y, w, h, r, fill, shadow = 0) {
+  if (shadow) {
+    ctx.fillStyle = BROWN;
+    roundRect(ctx, x + shadow, y + shadow, w, h, r);
+    ctx.fill();
+  }
   ctx.fillStyle = fill;
   roundRect(ctx, x, y, w, h, r);
   ctx.fill();
@@ -90,12 +91,15 @@ export async function drawResultCard(result, siteLabel) {
   boxed(ctx, cx, cy, cw, ch, 44, '#FFF4E0');
 
   // Mascot
-  const img = await loadImage(mascotSVG({ mood: result.mood }));
-  const mw = 340;
-  const mh = (mw * 228) / 200;
-  ctx.drawImage(img, W / 2 - mw / 2 - 6, cy + 24, mw, mh);
+  const img = await loadUrl(`./${result.image}`);
+  // fit the character picture into a 420 x 380 box, centred
+  const box = { w: 420, h: 380 };
+  const s = Math.min(box.w / img.width, box.h / img.height);
+  const mw = img.width * s;
+  const mh = img.height * s;
+  ctx.drawImage(img, W / 2 - mw / 2 - 6, cy + 24 + (box.h - mh), mw, mh);
 
-  let y = cy + 24 + mh + 70;
+  let y = cy + 24 + box.h + 70;
 
   // Title
   ctx.fillStyle = BROWN;

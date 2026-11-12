@@ -2490,3 +2490,61 @@ h3 {
 .tiers li {
   box-shadow: var(--card-shade);
 }
+
+/* ---------- flat look: no drop shadows anywhere ---------- */
+:root {
+  --shadow: none;
+  --shadow-lg: none;
+  --card-shade: none;
+}
+
+*,
+*::before,
+*::after {
+  box-shadow: none !important;
+}
+
+/* keep the outlined titles, but without the offset shadow */
+.duo-title .t-oyen,
+.duo-title .t-abu {
+  text-shadow:
+    3px 0 0 var(--brown),
+    -3px 0 0 var(--brown),
+    0 3px 0 var(--brown),
+    0 -3px 0 var(--brown),
+    2px 2px 0 var(--brown),
+    -2px -2px 0 var(--brown),
+    2px -2px 0 var(--brown),
+    -2px 2px 0 var(--brown) !important;
+}
+
+.hero h1,
+.hall-head h1,
+.kedai-hero h1 {
+  text-shadow: none;
+}
+
+/* the flat two-tone cel band on the character cards also read as a shadow */
+.meet-oyen {
+  background: #ffe7c7;
+}
+
+.meet-abu {
+  background: #eeedf4;
+}
+
+.brand-heads img {
+  border-width: 3px;
+}
+
+/* pressed state no longer needs to "sink" into a shadow */
+.btn:hover,
+.btn:active,
+.option:active,
+.option.is-picked {
+  transform: none;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
